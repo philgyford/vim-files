@@ -2,6 +2,7 @@
 
 filetype off
 call pathogen#runtime_append_all_bundles()
+call pathogen#helptags()
 filetype plugin indent on
 
 " Stop being vi compatible.
@@ -42,9 +43,11 @@ vnoremap / /\v
 set ignorecase
 set smartcase
 set gdefault
+" Highlight search results.
 set incsearch
 set showmatch
 set hlsearch
+" Make ,CR clear search.
 nnoremap <leader><space> :noh<cr>
 nnoremap <tab> %
 vnoremap <tab> %
@@ -55,8 +58,8 @@ set textwidth=79
 set formatoptions=qrn1
 set colorcolumn=85
 
-" Make it look a little more like TextMate.
-set list
+" Invisibles.
+nmap <leader>l :set list!<CR>
 set listchars=tab:▸\ ,eol:¬
 
 " Force hjkl movement keys.
@@ -102,6 +105,9 @@ nnoremap <C-l> <C-w>l
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-colorscheme molokai
+"colorscheme molokai
 
+map <leader>d :execute 'NERDTreeToggle ' . getcwd()<CR>
+" Ignores for NERDTree.
+set wildignore+=*.git
 
