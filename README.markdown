@@ -1,5 +1,6 @@
-# Phil Gyford's vim set-up.
-phil@gyford.com
+# Phil Gyford's vim set-up
+
+phil@gyford.com  
 http://github.com/philgyford/vim-files/
 
 You'll need to do:
