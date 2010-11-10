@@ -15,7 +15,6 @@ set modelines=0
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
-set expandtab
 
 " General sanity.
 set encoding=utf-8
@@ -83,7 +82,7 @@ vnoremap <F1> <ESC>
 nnoremap ; :
 
 " Save file on losing focus.
-au FocusLost * :wa
+"au FocusLost * :wa
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Leader commands:
@@ -105,9 +104,13 @@ nnoremap <C-l> <C-w>l
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-"colorscheme molokai
+colorscheme molokai
 
 map <leader>d :execute 'NERDTreeToggle ' . getcwd()<CR>
 " Ignores for NERDTree.
-set wildignore+=*.git
+set wildignore+=*.git,*.pyc,*.pyc
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Spaces for tabs in python files.
+autocmd Filetype python setlocal expandtab
