@@ -104,7 +104,7 @@ nnoremap <C-l> <C-w>l
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-colorscheme molokai
+colorscheme pyte 
 
 map <leader>d :execute 'NERDTreeToggle ' . getcwd()<CR>
 " Ignores for NERDTree.
