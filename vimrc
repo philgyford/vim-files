@@ -114,3 +114,7 @@ set wildignore+=*.git,*.pyc,*.pyc
 
 " Spaces for tabs in python files.
 autocmd Filetype python setlocal expandtab
+
+" Search all files in this and below directories.
+" Display results in the little window.
+nnoremap <leader>ff :noautocmd vimgrep //j ** \| cw<c-f>$BBBhhhi
