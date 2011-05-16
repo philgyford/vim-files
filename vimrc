@@ -4,7 +4,7 @@ filetype off
 call pathogen#runtime_append_all_bundles()
 call pathogen#helptags()
 filetype plugin indent on
-
+			 
 " Stop being vi compatible.
 set nocompatible
 
@@ -104,7 +104,7 @@ nnoremap <C-l> <C-w>l
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-colorscheme pyte 
+colorscheme textmate_macclassic
 
 map <leader>d :execute 'NERDTreeToggle ' . getcwd()<CR>
 " Ignores for NERDTree.
@@ -115,6 +115,8 @@ set wildignore+=*.git,*.pyc,*.pyc
 " Spaces for tabs in python files.
 autocmd Filetype python setlocal expandtab
 
+let python_highlight_all = 1
+
 " Search all files in this and below directories.
 " Display results in the little window.
 nnoremap <leader>ff :noautocmd vimgrep //j ** \| cw<c-f>$BBBhhhi
@@ -124,3 +126,5 @@ nnoremap <leader>ff :noautocmd vimgrep //j ** \| cw<c-f>$BBBhhhi
 :let g:closetag_html_style=1
 :source ~/.vim/scripts/closetag.vim
 
+" Type ,hlt to get a trace from the HiLinkTrace plugin that describes why
+" syntax highlighting is making the text under the cursor the current color.
