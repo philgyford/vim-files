@@ -24,7 +24,7 @@ set showmode
 set showcmd
 set hidden
 set wildmenu
-set wildmode=list:longest
+set wildmode=list:longest,full
 set visualbell
 set cursorline
 set ttyfast
@@ -56,6 +56,9 @@ set wrap
 set textwidth=79
 set formatoptions=qrn1
 set colorcolumn=85
+" Trying wordwrapping...
+set linebreak
+set nolist
 
 " Invisibles.
 nmap <leader>l :set list!<CR>
