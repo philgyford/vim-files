@@ -10,14 +10,14 @@ endif
 
 let g:colors_name = "textmate_macclassic"
 
-hi Cursor  guifg=NONE guibg=#000000 gui=NONE
+hi Cursor  guifg=#ffffff guibg=#000000 gui=NONE
 hi Visual  guifg=NONE guibg=#ffdfa1 gui=NONE
 hi CursorLine  guifg=NONE guibg=#fef5e3 gui=NONE
 "hi CursorColumn  guifg=NONE guibg=#fef5e3 gui=NONE
 hi ColorColumn  guifg=NONE guibg=#e3e3e3 gui=NONE
 hi LineNr  guifg=#979797 guibg=#e3e3e3 gui=NONE
 hi VertSplit  guifg=#cfcfcf guibg=#cfcfcf gui=NONE
-hi MatchParen  guifg=#ffffff guibg=#0000ff gui=bold
+hi MatchParen  guifg=#000000 guibg=#99cc99 gui=bold
 hi StatusLine  guifg=#000000 guibg=#cfcfcf gui=bold
 hi StatusLineNC  guifg=#666666 guibg=#cfcfcf gui=NONE
 hi Pmenu  guifg=NONE guibg=NONE gui=NONE

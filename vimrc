@@ -131,3 +131,6 @@ nnoremap <leader>ff :noautocmd vimgrep //j ** \| cw<c-f>$BBBhhhi
 
 " Type ,hlt to get a trace from the HiLinkTrace plugin that describes why
 " syntax highlighting is making the text under the cursor the current color.
+
+" Hide MacVim toolbar
+:set go-=T
