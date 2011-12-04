@@ -134,3 +134,6 @@ nnoremap <leader>ff :noautocmd vimgrep //j ** \| cw<c-f>$BBBhhhi
 
 " Hide MacVim toolbar
 :set go-=T
+
+" Stop Finder labels disappearing when saving a file.
+set backupcopy=yes 
