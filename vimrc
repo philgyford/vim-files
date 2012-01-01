@@ -107,7 +107,13 @@ nnoremap <C-l> <C-w>l
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-colorscheme textmate_macclassic
+" My custom TextMate Classic colorscheme.
+"colorscheme textmate_macclassic
+
+" Using http://ethanschoonover.com/solarized/vim-colors-solarized
+" Alternatively set background=dark.
+set background=light
+colorscheme solarized 
 
 map <leader>d :execute 'NERDTreeToggle ' . getcwd()<CR>
 " Ignores for NERDTree.
