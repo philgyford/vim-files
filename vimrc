@@ -143,3 +143,6 @@ nnoremap <leader>ff :noautocmd vimgrep //j ** \| cw<c-f>$BBBhhhi
 
 " Stop Finder labels disappearing when saving a file.
 set backupcopy=yes 
+
+" Set default window size.
+set lines=50 columns=89
