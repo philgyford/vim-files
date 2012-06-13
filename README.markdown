@@ -9,7 +9,7 @@ You'll need to do:
     $ ln -s path/to/vim-files .vim
     $ ln -s path/to/vim-files/vimrc .vimrc
 
-And then I think this, to fetch the submodules (stored in `bundle/`):
+And then I think, from within `vim-files/`, this, to fetch the submodules (stored in `bundle/`):
 
 	$ git submodule init
 	$ git submodule update
