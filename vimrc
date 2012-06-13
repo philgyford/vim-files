@@ -1,5 +1,6 @@
 " From http://stevelosh.com/blog/2010/09/coming-home-to-vim/
 
+" Load stuff that's in /bundles/.
 filetype off
 call pathogen#runtime_append_all_bundles()
 call pathogen#helptags()
@@ -130,10 +131,6 @@ let python_highlight_all = 1
 " Display results in the little window.
 nnoremap <leader>ff :noautocmd vimgrep //j ** \| cw<c-f>$BBBhhhi
 
-
-" Auto close tags.
-:let g:closetag_html_style=1
-:source ~/.vim/scripts/closetag.vim
 
 " Type ,hlt to get a trace from the HiLinkTrace plugin that describes why
 " syntax highlighting is making the text under the cursor the current color.
