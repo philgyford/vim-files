@@ -12,7 +12,7 @@ set nocompatible
 " Prevent some security exploits.
 set modelines=0
 
-" Tab settings.
+" Default tab settings.
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
@@ -99,6 +99,8 @@ nnoremap <leader>v V`]
 
 " Split window vertically and switch to new side.
 nnoremap <leader>w <C-w>v<C-w>l
+" Split window horizontally and switch to new pane.
+nnoremap <leader>W <C-w>s<C-w>j
 
 " Map <C-[h/j/k/l]> to the commands to move around splits.
 nnoremap <C-h> <C-w>h
@@ -125,6 +127,10 @@ set wildignore+=*.git,*.pyc,*.pyc
 " Spaces for tabs in python files.
 autocmd Filetype python setlocal expandtab
 
+autocmd Filetype html setlocal ts=4 sts=4 sw=4
+autocmd Filetype ruby setlocal expandtab ts=2 sts=2 sw=2
+autocmd Filetype javascript setlocal ts=4 sts=4 sw=4
+
 let python_highlight_all = 1
 
 " Search all files in this and below directories.
@@ -142,4 +148,4 @@ nnoremap <leader>ff :noautocmd vimgrep //j ** \| cw<c-f>$BBBhhhi
 set backupcopy=yes 
 
 " Set default window size.
-set lines=50 columns=89
+set lines=79 columns=89
