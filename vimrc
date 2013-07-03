@@ -108,6 +108,9 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
+" Map ,t to open ctrlp (so it's the same as when I used Command-t).
+nnoremap <leader>t :execute 'CtrlP'<CR>
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " My custom TextMate Classic colorscheme.
@@ -129,7 +132,7 @@ autocmd Filetype python setlocal expandtab
 
 autocmd Filetype html setlocal ts=4 sts=4 sw=4
 autocmd Filetype ruby setlocal expandtab ts=2 sts=2 sw=2
-autocmd Filetype javascript setlocal ts=4 sts=4 sw=4
+autocmd Filetype javascript setlocal ts=2 sts=2 sw=2
 
 let python_highlight_all = 1
 
