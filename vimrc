@@ -109,7 +109,9 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
 " Map ,t to open ctrlp (so it's the same as when I used Command-t).
-nnoremap <leader>t :execute 'CtrlP'<CR>
+nnoremap <leader>t :CtrlP<CR>
+" Cmd-Shift-P to clear the cache (refresh list of files).
+nnoremap <silent> <D-P> :ClearCtrlPCache<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
