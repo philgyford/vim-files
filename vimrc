@@ -127,16 +127,29 @@ map <leader>d :execute 'NERDTreeToggle ' . getcwd()<CR>
 " Ignores for NERDTree.
 set wildignore+=*.git,*.pyc,*.pyc
 
+" Change tabs/spaces as needed.
+
+" Tabs, 2 spaces wide.
+map \t <Esc>:set ts=2 sts=2 sw=2 noexpandtab<CR>
+" Tabs, 4 spaces wide.
+map \T <Esc>:set ts=4 sts=4 sw=4 noexpandtab<CR>
+" Spaces instead of tabs, 2 spaces.
+map \s <Esc>:set ts=2 sts=2 sw=2 expandtab<CR>
+" Spaces instead of tabs, 4 spaces.
+map \S <Esc>:set ts=4 sts=4 sw=4 expandtab<CR>
+
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Spaces for tabs in python files.
-autocmd Filetype python setlocal expandtab
-
-autocmd Filetype html setlocal ts=4 sts=4 sw=4
+# Tabs/spaces for different file types.
+autocmd Filetype python setlocal ts=4 sts=4 sw=4 expandtab
 
 autocmd Filetype ruby setlocal ts=2 sts=2 sw=2 expandtab
-autocmd Filetype javascript setlocal ts=2 sts=2 sw=2
+autocmd Filetype javascript setlocal ts=2 sts=2 sw=2 expandtab
 autocmd Filetype yaml setlocal ts=2 sts=2 sw=2 expandtab
+
+autocmd Filetype html setlocal ts=4 sts=4 sw=4 noexpandtab
+
 
 let python_highlight_all = 1
 
