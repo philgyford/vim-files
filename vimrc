@@ -141,7 +141,7 @@ map \S <Esc>:set ts=4 sts=4 sw=4 expandtab<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-# Tabs/spaces for different file types.
+" Tabs/spaces for different file types.
 autocmd Filetype python setlocal ts=4 sts=4 sw=4 expandtab
 
 autocmd Filetype ruby setlocal ts=2 sts=2 sw=2 expandtab
