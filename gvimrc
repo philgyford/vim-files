@@ -1,5 +1,5 @@
 set guifont=Ubuntu\ Mono:h14
-set linespace=2
+"set linespace=2
 set antialias
 
 " Don't beep
