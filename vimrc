@@ -56,7 +56,7 @@ vnoremap <tab> %
 set wrap
 set textwidth=79
 set formatoptions=qrn1
-set colorcolumn=85
+set colorcolumn=80
 " Trying wordwrapping...
 set linebreak
 set nolist
