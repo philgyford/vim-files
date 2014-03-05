@@ -121,7 +121,7 @@ nnoremap <silent> <D-P> :ClearCtrlPCache<CR>
 " Using http://ethanschoonover.com/solarized/vim-colors-solarized
 " Alternatively set background=dark.
 set background=light
-colorscheme solarized 
+colorscheme solarized
 
 map <leader>d :execute 'NERDTreeToggle ' . getcwd()<CR>
 " Ignores for NERDTree.
