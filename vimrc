@@ -5,7 +5,7 @@ filetype off
 call pathogen#runtime_append_all_bundles()
 call pathogen#helptags()
 filetype plugin indent on
-			 
+
 " Stop being vi compatible.
 set nocompatible
 
@@ -61,7 +61,7 @@ set colorcolumn=80
 set linebreak
 set nolist
 
-" Invisibles.
+" Show invisibles.
 nmap <leader>l :set list!<CR>
 set listchars=tab:▸\ ,eol:¬
 
@@ -138,6 +138,8 @@ map \s <Esc>:set ts=2 sts=2 sw=2 expandtab<CR>
 " Spaces instead of tabs, 4 spaces.
 map \S <Esc>:set ts=4 sts=4 sw=4 expandtab<CR>
 
+" Show trailing whitespace.
+nnoremap <leader>L :/\s\+$<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -166,7 +168,7 @@ nnoremap <leader>ff :noautocmd vimgrep //j ** \| cw<c-f>$BBBhhhi
 :set go-=T
 
 " Stop Finder labels disappearing when saving a file.
-set backupcopy=yes 
+set backupcopy=yes
 
 " Set default window size.
 set lines=79 columns=89
