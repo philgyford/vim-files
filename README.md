@@ -3,16 +3,31 @@
 phil@gyford.com  
 http://github.com/philgyford/vim-files/
 
-You'll need to do:
+Clone the files to somewhere, like:
+
+	$ git clone https://github.com/philgyford/vim-files ~/Projects/personal/vim-files
+
+You'll need to do this (using whatever your actual `path/to/vim-files` was above):
 
     $ cd ~
     $ ln -s path/to/vim-files .vim
-    $ ln -s path/to/vim-files/vimrc .vimrc
+	$ cd ~/.vim
+	$ rake
+
+This will install `~/.vimrc` and `~/.gvimrc` symlinks that point to files inside the `.vim` directory.
+
+The Rakefile stuff via [mislav](https://github.com/mislav/vimfiles) and [tomtaylor](https://github.com/tomtaylor/).
+
+
+I don't think this bit is needed now:
 
 And then, from within `vim-files/`, this, to fetch the submodules (stored in `bundle/`):
 
 	$ git submodule init
 	$ git submodule update
+
+
+## Adding new submodules
 
 For future reference, to add further submodules, do something like this:
 
