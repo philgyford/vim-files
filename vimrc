@@ -141,6 +141,10 @@ map \S <Esc>:set ts=4 sts=4 sw=4 expandtab<CR>
 " Show trailing whitespace.
 nnoremap <leader>L :/\s\+$<CR>
 
+" keep blocks selected when indenting
+vnoremap < <gv
+vnoremap > >gv
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Tabs/spaces for different file types.
