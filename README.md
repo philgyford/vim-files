@@ -38,3 +38,16 @@ And then commit `.gitmodules` and `bundle/nerdtree` (which will be a particular
 commit of that repository, not the files themselves).
 
 
+## Removing a submodule
+
+1. Delete the relevant section from the `.gitmodules` file.
+2. Stage the `.gitmodules` changes `git add .gitmodules`
+3. Delete the relevant section from `.git/config`
+4. Run `git rm --cached path_to_submodule` (no trailing slash).
+5. Run `rm -rf .git/modules/path_to_submodule`
+6. Commit `git commit -m "Removed submodule <name>"`
+7. Delete the now untracked submodule files
+   `rm -rf path_to_submodule`
+
+From http://stackoverflow.com/a/1260982/250962
+
