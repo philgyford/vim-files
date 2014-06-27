@@ -4,12 +4,6 @@
 [submodule "bundle/command-t"]
 	path = bundle/command-t
 	url = git://git.wincent.com/command-t.git
-[submodule "bundles/autoclose"]
-	path = bundles/autoclose
-	url = git://github.com/vim-scripts/AutoClose.git
-[submodule "bundle/autoclose"]
-	path = bundle/autoclose
-	url = git://github.com/vim-scripts/AutoClose.git
 [submodule "bundle/fugitive"]
 	path = bundle/fugitive
 	url = git://github.com/tpope/vim-fugitive
