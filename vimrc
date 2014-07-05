@@ -124,7 +124,11 @@ set background=light
 colorscheme solarized
 
 map <leader>d :execute 'NERDTreeToggle ' . getcwd()<CR>
+" Ignores for NERDTree.
 let NERDTreeIgnore = ['\.pyc$', '\.git$']
+
+" Ignores for ctrlp.
+set wildignore+=*.git,*.pyc
 
 " Change tabs/spaces as needed.
 
