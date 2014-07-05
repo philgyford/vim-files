@@ -22,3 +22,6 @@
 [submodule "bundle/vim-airline"]
 	path = bundle/vim-airline
 	url = https://github.com/bling/vim-airline
+[submodule "bundle/delimitMate"]
+	path = bundle/delimitMate
+	url = git@github.com:Raimondi/delimitMate.git
