@@ -27,11 +27,6 @@ And then, from within `vim-files/`, this, to fetch the submodules (stored in `bu
 	$ git submodule update
 
 
-## Issue with Command-T and Ruby 2.0.0
-
-The Command-T extension must be compiled with the same version that vim uses. This was fine on Macs until Mavericks, where vim still uses 1.8.7 while the system is using Ruby 2. So you may need to [use rbenv to install the older Ruby](http://blog.parkermoore.de/2014/01/02/installing-command-t-with-os-x-mavericks-built-in-vim/) *before* running `rake`, above.
-
-
 ## Adding new submodules
 
 For future reference, to add further submodules, do something like this:
