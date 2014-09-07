@@ -113,6 +113,14 @@ nnoremap <leader>t :CtrlP<CR>
 " Cmd-Shift-P to clear the cache (refresh list of files).
 nnoremap <silent> <D-P> :ClearCtrlPCache<CR>
 
+" Add and set up ctrlp-funky extension.
+let g:ctrlp_extensions = ['funky']
+nnoremap <Leader>fu :CtrlPFunky<Cr>
+" narrow the list down with a word under cursor.
+nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
+" Experimental syntax highlighting.
+let g:ctrlp_funky_syntax_highlight = 1
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " My custom TextMate Classic colorscheme.
