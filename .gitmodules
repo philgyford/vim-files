@@ -25,3 +25,6 @@
 [submodule "bundle/ctrlp-funky"]
 	path = bundle/ctrlp-funky
 	url = git@github.com:tacahiroy/ctrlp-funky
+[submodule "bundle/vim-blade"]
+	path = bundle/vim-blade
+	url = git@github.com:xsbeats/vim-blade.git
