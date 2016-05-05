@@ -19,6 +19,7 @@ set softtabstop=4
 
 " General sanity.
 set encoding=utf-8
+set fileencoding=utf-8
 set scrolloff=3
 set autoindent
 set showmode
@@ -187,3 +188,6 @@ set backupcopy=yes
 
 " Set default window size.
 set lines=79 columns=89
+
+" Put all swap files in one place.
+set directory=~/.vim/swap
