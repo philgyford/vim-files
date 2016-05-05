@@ -190,4 +190,4 @@ set backupcopy=yes
 set lines=79 columns=89
 
 " Put all swap files in one place.
-set directory=~/.vim/swap
+set directory=~/.vim/swap//
