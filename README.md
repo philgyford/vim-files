@@ -38,6 +38,21 @@ And then commit `.gitmodules` and `bundle/nerdtree` (which will be a particular
 commit of that repository, not the files themselves).
 
 
+## Updating submodules
+
+To update one:
+
+	$ cd bundle/submodulename
+	$ git checkout master
+	$ git pull
+	$ git commit -am "Updated submodulename"
+
+To update all:
+
+	$ git submodule foreach git pull origin master
+	$ git commit -am "Updated all submodules"
+
+
 ## Removing a submodule
 
 1. Delete the relevant section from the `.gitmodules` file.
