@@ -22,9 +22,6 @@
 [submodule "bundle/delimitMate"]
 	path = bundle/delimitMate
 	url = git@github.com:Raimondi/delimitMate.git
-[submodule "bundle/vim-blade"]
-	path = bundle/vim-blade
-	url = git@github.com:xsbeats/vim-blade.git
 [submodule "bundle/vim-bracketed-paste"]
 	path = bundle/vim-bracketed-paste
 	url = git@github.com:ConradIrwin/vim-bracketed-paste.git
