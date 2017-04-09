@@ -43,3 +43,8 @@ Reload it (`:source $MYVIMRC`) and run `:PluginInstall`.
 
 Delete the line from `vimrc` and run `:PluginClean`.
 
+
+## More help
+
+`:h vundle`
+
