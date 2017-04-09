@@ -48,6 +48,9 @@ Plugin 'vim-airline/vim-airline'
 " Themes for vim-airline:
 Plugin 'vim-airline/vim-airline-themes'
 
+" Otherwise it'll delete itself if you do PluginClean:
+Plugin 'VundleVim/Vundle.vim'
+
 call vundle#end()
 filetype plugin indent on
 " END Vundle config
