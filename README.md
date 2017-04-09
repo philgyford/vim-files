@@ -34,13 +34,13 @@ This requires extra steps (the below what I did for Mac OS X):
 
 2. Compile YouCompleteMe:
 
-	$ cd ~/.vim/bundle/YouCompleteMe
-	$ ./install.py
+		$ cd ~/.vim/bundle/YouCompleteMe
+		$ ./install.py
 
-**BUT** Because I use pyenv to manage my python versions I first had to install
-a python version that YouCompleteMe was happy with (see the YCM FAQ):
+	**BUT** because I use pyenv to manage my python versions I first had to install
+	a python version that YouCompleteMe was happy with (see the YCM FAQ):
 
-	$ PYTHON_CONFIGURE_OPTS="--enable-framework" pyenv install 3.6.0
+		$ PYTHON_CONFIGURE_OPTS="--enable-framework" pyenv install 3.6.0
 
 
 ## Install a new plugin
