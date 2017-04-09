@@ -16,7 +16,7 @@ You'll need to do this (using whatever your actual `path/to/vim-files` was above
 
 This will install `~/.vimrc` and `~/.gvimrc` symlinks that point to files inside the `.vim` directory.
 
-The Rakefile stuff via [mislav](https://github.com/mislav/vimfiles) and [tomtaylor](https://github.com/tomtaylor/).
+The Rakefile stuff via [mislav](https://github.com/mislav/vimfiles) and [tomtaylor](https://github.com/tomtaylor/vim-files).
 
 
 I don't think this bit is needed now:
