@@ -1,6 +1,4 @@
-.DS_Store
 *.un~
 *.swp
-.VimballRecord
-.netrwhist
 swap/
+bundle/

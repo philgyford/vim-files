@@ -1,13 +1,55 @@
-" From http://stevelosh.com/blog/2010/09/coming-home-to-vim/
-
-" Load stuff that's in /bundles/.
-filetype off
-call pathogen#runtime_append_all_bundles()
-call pathogen#helptags()
-filetype plugin indent on
+" Some of this from http://stevelosh.com/blog/2010/09/coming-home-to-vim/
 
 " Stop being vi compatible.
 set nocompatible
+filetype off
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" START Vundle config
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" Solarized colour schemes:
+Plugin 'altercation/vim-colors-solarized'
+
+" Stops pasting text into vim making a mess:
+Plugin 'ConradIrwin/vim-bracketed-paste'
+
+" Quick file browsing/matching:
+Plugin 'ctrlpvim/ctrlp.vim'
+
+" Markdown syntax highlighting etc:
+Plugin 'plasticboy/vim-markdown'
+
+" Auto closing of quotes, brackets, etc:
+Plugin 'Raimondi/delimitMate'
+
+" Make code commenting better:
+Plugin 'scrooloose/nerdcommenter'
+
+" Sidebar for file navigation:
+Plugin 'scrooloose/nerdtree'
+
+" Use ctrl-p to jump to function names:
+Plugin 'tacahiroy/ctrlp-funky'
+
+" Git wrapper:
+Plugin 'tpope/vim-fugitive'
+
+" Surround text with "(<>)" etc:
+Plugin 'tpope/vim-surround'
+
+" Better status/tabline:
+Plugin 'vim-airline/vim-airline'
+
+" Themes for vim-airline:
+Plugin 'vim-airline/vim-airline-themes'
+
+call vundle#end()
+filetype plugin indent on
+" END Vundle config
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 
 " Prevent some security exploits.
 set modelines=0
