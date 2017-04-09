@@ -39,6 +39,9 @@ Plugin 'tpope/vim-fugitive'
 " Surround text with "(<>)" etc:
 Plugin 'tpope/vim-surround'
 
+" Code auto-completion:
+Plugin 'Valloric/YouCompleteMe'
+
 " Better status/tabline:
 Plugin 'vim-airline/vim-airline'
 
