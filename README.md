@@ -45,6 +45,10 @@ This requires extra steps (the below what I did for Mac OS X):
 
 		$ PYTHON_CONFIGURE_OPTS="--enable-framework" pyenv install 3.6.0
 
+	**BUT** that screwed up things in other projects like tox creating virtual
+	envs so I had to re-run `python install 3.6.0` to install a standard
+	version.
+
 
 ## Install a new plugin
 
