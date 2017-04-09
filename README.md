@@ -30,7 +30,10 @@ Open MacVim and run `:PluginInstall`.
 
 This requires extra steps (the below what I did for Mac OS X):
 
-1. Install CMake with [Homebrew](http://brew.sh/).
+1. Install CMake with [Homebrew](http://brew.sh/):
+
+		$ brew update
+		$ brew install cmake
 
 2. Compile YouCompleteMe:
 
