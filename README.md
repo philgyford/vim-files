@@ -7,62 +7,39 @@ Clone the files to somewhere, like:
 
 	$ git clone https://github.com/philgyford/vim-files ~/Projects/personal/vim-files
 
-You'll need to do this (using whatever your actual `path/to/vim-files` was above):
+You'll need to do this:
 
     $ cd ~
-    $ ln -s path/to/vim-files .vim
-	$ cd ~/.vim
-	$ rake
+    $ ln -s ~/Projects/personal/vim-files .vim
+    $ ln -s ~/Projects/personal/vim-files/vimrc .vimrc
+    $ ln -s ~/Projects/personal/vim-files/gvimrc .gvimrc
+	$ cd .vim
 
-This will install `~/.vimrc` and `~/.gvimrc` symlinks that point to files inside the `.vim` directory.
+Then install [Vundle](https://github.com/VundleVim/Vundle.vim):
 
-The Rakefile stuff via [mislav](https://github.com/mislav/vimfiles) and [tomtaylor](https://github.com/tomtaylor/vim-files).
+	$ git clone https://github.com/VundleVim/Vundle.vim.git bundle/Vundle.vim
 
+Which will make the `~/Projects/personal/vim-files/bundle` directory where all
+the bundles will be stored.
 
-I don't think this bit is needed now:
-
-And then, from within `vim-files/`, this, to fetch the submodules (stored in `bundle/`):
-
-	$ git submodule init
-	$ git submodule update
+Open MacVim and run `:PluginInstall`.
 
 
-## Adding new submodules
+## Install a new plugin
 
-For future reference, to add further submodules, do something like this:
+Add a new line in `vimrc` like:
 
-	$ cd path/to/vim-files
-	$ git submodule add git@github.com:scrooloose/nerdtree.git bundle/nerdtree
+	Plugin 'tpope/vim-surround'
 
-And then commit `.gitmodules` and `bundle/nerdtree` (which will be a particular
-commit of that repository, not the files themselves).
+Reload it (`:source $MYVIMRC`) and run `:PluginInstall`.
 
 
-## Updating submodules
+## Update all configured plugins
 
-To update one:
-
-	$ cd bundle/submodulename
-	$ git checkout master
-	$ git pull
-	$ git commit -am "Updated submodulename"
-
-To update all:
-
-	$ git submodule foreach git pull origin master
-	$ git commit -am "Updated all submodules"
+`:PluginUpdate`
 
 
-## Removing a submodule
+## Removing a plugin
 
-1. Delete the relevant section from the `.gitmodules` file.
-2. Stage the `.gitmodules` changes `git add .gitmodules`
-3. Delete the relevant section from `.git/config`
-4. Run `git rm --cached path_to_submodule` (no trailing slash).
-5. Run `rm -rf .git/modules/path_to_submodule`
-6. Commit `git commit -m "Removed submodule <name>"`
-7. Delete the now untracked submodule files
-   `rm -rf path_to_submodule`
-
-From http://stackoverflow.com/a/1260982/250962
+Delete the line from `vimrc` and run `:PluginClean`.
 
