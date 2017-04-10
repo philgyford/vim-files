@@ -36,30 +36,6 @@ install with [Homebrew](http://brew.sh/):
 	$ brew cask install font-fira-code
 
 
-### [YouCompleteMe](https://github.com/Valloric/YouCompleteMe)
-
-This requires extra steps (the below is what I did for Mac OS X):
-
-1. Install CMake with [Homebrew](http://brew.sh/):
-
-		$ brew update
-		$ brew install cmake
-
-2. Compile YouCompleteMe:
-
-		$ cd ~/.vim/bundle/YouCompleteMe
-		$ ./install.py
-
-	**BUT** because I use pyenv to manage my python versions I first had to install
-	a python version that YouCompleteMe was happy with (see the YCM FAQ):
-
-		$ PYTHON_CONFIGURE_OPTS="--enable-framework" pyenv install 3.6.0
-
-	**BUT** that screwed up things in other projects like tox creating virtual
-	envs so I had to re-run `python install 3.6.0` to install a standard
-	version.
-
-
 ## Install a new plugin
 
 Add a new line in `vimrc` like:

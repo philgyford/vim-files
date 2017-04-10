@@ -39,9 +39,6 @@ Plugin 'tpope/vim-fugitive'
 " Surround text with "(<>)" etc:
 Plugin 'tpope/vim-surround'
 
-" Code auto-completion:
-Plugin 'Valloric/YouCompleteMe'
-
 " Better status/tabline:
 Plugin 'vim-airline/vim-airline'
 
@@ -248,4 +245,5 @@ set backupcopy=yes
 set lines=88 columns=89
 
 " Put all swap files in one place.
-set directory=~/.vim/swap//
+set directory=~/.vim/swap/
+
