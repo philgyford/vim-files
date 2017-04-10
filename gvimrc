@@ -1,5 +1,5 @@
 set macligatures
-set guifont=Fira\ Code:h12
+set guifont=Fira\ Code:h11
 "set guifont=Ubuntu\ Mono:h14
 "set linespace=2
 set antialias
