@@ -191,7 +191,7 @@ colorscheme solarized
 
 map <leader>d :execute 'NERDTreeToggle ' . getcwd()<CR>
 " Ignores for NERDTree.
-let NERDTreeIgnore = ['\.pyc$', '\.git$']
+let NERDTreeIgnore = ['__pycache__$', '\.pyc$', '\.git$']
 
 " Ignores for ctrlp.
 set wildignore+=*.git,*.pyc
