@@ -26,9 +26,19 @@ the bundles will be stored.
 
 Open MacVim and run `:PluginInstall`.
 
+
+### Font
+
+`gvimrc` specifies the [Fira Code](https://github.com/tonsky/FiraCode) font. To
+install with [Homebrew](http://brew.sh/): 
+
+	$ brew tap caskroom/fonts
+	$ brew cask install font-fira-code
+
+
 ### [YouCompleteMe](https://github.com/Valloric/YouCompleteMe)
 
-This requires extra steps (the below what I did for Mac OS X):
+This requires extra steps (the below is what I did for Mac OS X):
 
 1. Install CMake with [Homebrew](http://brew.sh/):
 
