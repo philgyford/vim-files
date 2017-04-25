@@ -174,11 +174,11 @@ let g:ctrlp_funky_syntax_highlight = 1
 
 " Change window size.
 " First option is the same as initial size, set further down...
-nmap <leader>1 :set lines=88 columns=89<CR>
+nmap <leader>1 :set lines=88 columns=85<CR>
 " Wide enough for nerdtree:
-nmap <leader>2 :set lines=88 columns=116<CR>
+nmap <leader>2 :set lines=88 columns=117<CR>
 " Wide enough for nerdtree and two documents:
-nmap <leader>3 :set lines=88 columns=201<CR>
+nmap <leader>3 :set lines=88 columns=203<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -246,7 +246,7 @@ set backupcopy=yes
 
 " Set default window size.
 " If you change this, set the size for <leader>1, above.
-set lines=88 columns=89
+set lines=88 columns=85
 
 " Put all swap files in one place.
 set directory=~/.vim/swap/
