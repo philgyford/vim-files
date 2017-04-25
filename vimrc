@@ -100,9 +100,13 @@ vnoremap <tab> %
 
 " Handle long lines nicely.
 set wrap
-set textwidth=79
+set textwidth=80
+" Smaller textwidth only for git commit messages:
+autocmd FileType gitcommit set textwidth=72
+set colorcolumn=+1
+" Extra column to use for git commit title lines:
+autocmd FileType gitcommit set colorcolumn+=51
 set formatoptions=qrn1
-set colorcolumn=80
 " Trying wordwrapping...
 set linebreak
 set nolist
