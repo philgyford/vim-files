@@ -30,9 +30,6 @@ Plugin 'scrooloose/nerdcommenter'
 " Sidebar for file navigation:
 Plugin 'scrooloose/nerdtree'
 
-" XO for JavaScript linting:
-Plugin 'sindresorhus/vim-xo'
-
 " Use ctrl-p to jump to function names:
 Plugin 'tacahiroy/ctrlp-funky'
 
@@ -235,10 +232,6 @@ autocmd Filetype html setlocal ts=4 sts=4 sw=4 noexpandtab
 let g:vim_markdown_folding_disabled=1
 
 let python_highlight_all = 1
-
-
-" Linting.
-let g:syntastic_javascript_checkers = ['xo']
 
 
 " Search all files in this and below directories.

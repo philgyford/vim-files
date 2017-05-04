@@ -34,12 +34,6 @@ install with [Homebrew](http://brew.sh/):
 	$ brew tap caskroom/fonts
 	$ brew cask install font-fira-code
 
-### Linting
-
-I've also done this to install the XO JavaScript linter:
-
-	$ npm install --global xo
-
 
 ## Install a new plugin
 
