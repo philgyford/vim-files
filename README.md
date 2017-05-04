@@ -26,7 +26,6 @@ the bundles will be stored.
 
 Open MacVim and run `:PluginInstall`.
 
-
 ### Font
 
 `gvimrc` specifies the [Fira Code](https://github.com/tonsky/FiraCode) font. To
@@ -34,6 +33,12 @@ install with [Homebrew](http://brew.sh/):
 
 	$ brew tap caskroom/fonts
 	$ brew cask install font-fira-code
+
+### Linting
+
+I've also done this to install the XO JavaScript linter:
+
+	$ npm install --global xo
 
 
 ## Install a new plugin

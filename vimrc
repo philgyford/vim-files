@@ -30,6 +30,9 @@ Plugin 'scrooloose/nerdcommenter'
 " Sidebar for file navigation:
 Plugin 'scrooloose/nerdtree'
 
+" XO for JavaScript linting:
+Plugin 'sindresorhus/vim-xo'
+
 " Use ctrl-p to jump to function names:
 Plugin 'tacahiroy/ctrlp-funky'
 
