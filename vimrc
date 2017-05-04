@@ -45,6 +45,8 @@ Plugin 'vim-airline/vim-airline'
 " Themes for vim-airline:
 Plugin 'vim-airline/vim-airline-themes'
 
+Plugin 'vim-syntastic/syntastic'
+
 " Otherwise it'll delete itself if you do PluginClean:
 Plugin 'VundleVim/Vundle.vim'
 
@@ -230,6 +232,11 @@ autocmd Filetype html setlocal ts=4 sts=4 sw=4 noexpandtab
 let g:vim_markdown_folding_disabled=1
 
 let python_highlight_all = 1
+
+
+" Linting.
+let g:syntastic_javascript_checkers = ['xo']
+
 
 " Search all files in this and below directories.
 " Display results in the little window.
