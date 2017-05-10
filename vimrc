@@ -181,6 +181,9 @@ nmap <leader>1 :set lines=88 columns=85<CR>
 nmap <leader>2 :set lines=88 columns=117<CR>
 " Wide enough for nerdtree and two documents:
 nmap <leader>3 :set lines=88 columns=203<CR>
+" Split window vertically, open nerdtree, make window big enough, resize left
+" split:
+nmap <leader>4 <leader>w<CR> <leader>d<CR> <leader>3<CR> <C-l> :vertical resize 85<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
