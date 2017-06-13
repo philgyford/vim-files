@@ -6,17 +6,26 @@ filetype off
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " START Vundle config
+" After adding a new line do `:source $MYVIMRC` and run `:PluginInstall`.
+" After deleting something do `:PluginClean`.
+
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 " Solarized colour schemes:
 Plugin 'altercation/vim-colors-solarized'
 
+" Colorise CSS colors:
+Plugin 'ap/vim-css-color'
+
 " Stops pasting text into vim making a mess:
 Plugin 'ConradIrwin/vim-bracketed-paste'
 
 " Quick file browsing/matching:
 Plugin 'ctrlpvim/ctrlp.vim'
+
+" Expand html abbreviations:
+Plugin 'mattn/emmet-vim'
 
 " Markdown syntax highlighting etc:
 Plugin 'plasticboy/vim-markdown'
@@ -115,7 +124,7 @@ set nolist
 
 " Show invisibles.
 nmap <leader>l :set list!<CR>
-set listchars=tab:▸\ ,eol:¬
+set listchars=tab:▸\ ,trail:·,eol:¬
 
 " Force hjkl movement keys.
 nnoremap <up> <nop>
@@ -189,10 +198,11 @@ nmap <leader>0 :vertical resize 85<CR>
 nmap <leader>4 <leader>w<CR> <leader>d<CR> <leader>3<CR> <C-l> <leader>0
 
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Search all files in this and below directories.
+" Display results in the little window.
+nnoremap <leader>ff :noautocmd vimgrep //j ** \| cw<c-f>$BBBhhhi
 
-" My custom TextMate Classic colorscheme.
-"colorscheme textmate_macclassic
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Using http://ethanschoonover.com/solarized/vim-colors-solarized
 " Alternatively set background=dark.
@@ -241,10 +251,6 @@ let g:vim_markdown_folding_disabled=1
 let python_highlight_all = 1
 
 
-" Search all files in this and below directories.
-" Display results in the little window.
-nnoremap <leader>ff :noautocmd vimgrep //j ** \| cw<c-f>$BBBhhhi
-
 
 " Type ,hlt to get a trace from the HiLinkTrace plugin that describes why
 " syntax highlighting is making the text under the cursor the current color.
@@ -261,4 +267,29 @@ set lines=88 columns=85
 
 " Put all swap files in one place.
 set directory=~/.vim/swap/
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Syntastic
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_loc_list_height = 5
+let g:syntastic_auto_loc_list = 0
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 1
+
+let g:syntastic_error_symbol = '❌'
+let g:syntastic_style_error_symbol = '⁉️'
+let g:syntastic_warning_symbol = '⚠️'
+let g:syntastic_style_warning_symbol = '💩'
+
+highlight link SyntasticErrorSign SignColumn
+highlight link SyntasticWarningSign SignColumn
+highlight link SyntasticStyleErrorSign SignColumn
+highlight link SyntasticStyleWarningSign SignColumn
+
+let g:syntastic_javascript_checkers = ['xo']
 
