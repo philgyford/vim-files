@@ -281,15 +281,28 @@ let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 1
 
-let g:syntastic_error_symbol = '❌'
-let g:syntastic_style_error_symbol = '⁉️'
-let g:syntastic_warning_symbol = '⚠️'
-let g:syntastic_style_warning_symbol = '💩'
+"let g:syntastic_error_symbol = '❌'
+"let g:syntastic_style_error_symbol = '⁉️'
+"let g:syntastic_warning_symbol = '❗️'
+"let g:syntastic_style_warning_symbol = '💩'
 
 highlight link SyntasticErrorSign SignColumn
 highlight link SyntasticWarningSign SignColumn
 highlight link SyntasticStyleErrorSign SignColumn
 highlight link SyntasticStyleWarningSign SignColumn
 
-let g:syntastic_javascript_checkers = ['xo']
+"let g:syntastic_javascript_checkers = ['xo']
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Airline
+
+" Enable airline syntastic integration:
+let g:airline#extensions#syntastic#enabled = 1
+
+" Disable wordcount:
+let g:airline#extensions#wordcount#enabled = 0:
+
+" Make the syntastic error in airline readable (but ugly):
+call airline#parts#define_accent('syntastic', 'yellow')
 
