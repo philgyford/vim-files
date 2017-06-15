@@ -24,6 +24,9 @@ Plugin 'ConradIrwin/vim-bracketed-paste'
 " Quick file browsing/matching:
 Plugin 'ctrlpvim/ctrlp.vim'
 
+" Make NERDTree be independent from tabs:
+Plugin 'jistr/vim-nerdtree-tabs'
+
 " Expand html abbreviations:
 Plugin 'mattn/emmet-vim'
 
@@ -194,8 +197,8 @@ nmap <leader>3 :set lines=88 columns=203<CR>
 " Set current vertical split to be our standard width:
 nmap <leader>0 :vertical resize 85<CR>
 
-" Split vertically, open nerdtree, make window big enough, resize left split:
-nmap <leader>4 <leader>w<CR> <leader>d<CR> <leader>3<CR> <C-l> <leader>0
+" Split vertically, open NERDTreeTabs, make window big enough, resize left split:
+nmap <leader>4 <leader>w<CR> :execute 'NERDTreeTabsOpen'<CR> <leader>3<CR> <C-l> <leader>0
 
 
 " Search all files in this and below directories.
@@ -209,7 +212,11 @@ nnoremap <leader>ff :noautocmd vimgrep //j ** \| cw<c-f>$BBBhhhi
 set background=light
 colorscheme solarized
 
-map <leader>d :execute 'NERDTreeToggle ' . getcwd()<CR>
+" For vanilla NERDTree:
+"map <leader>d :execute 'NERDTreeToggle ' . getcwd()<CR>
+" For NerdTreeTabs:
+map <leader>d :execute 'NERDTreeTabsToggle'<CR>
+
 " Ignores for NERDTree.
 let NERDTreeIgnore = ['__pycache__$', '\.pyc$', '\.git$']
 
@@ -262,8 +269,9 @@ let python_highlight_all = 1
 set backupcopy=yes
 
 " Set default window size.
+" Including enough space for NERDTreeTabs.
 " If you change this, set the size for <leader>1, above.
-set lines=88 columns=85
+set lines=88 columns=117
 
 " Put all swap files in one place.
 set directory=~/.vim/swap/
