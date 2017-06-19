@@ -309,7 +309,7 @@ highlight link SyntasticStyleWarningSign SignColumn
 let g:airline#extensions#syntastic#enabled = 1
 
 " Disable wordcount:
-let g:airline#extensions#wordcount#enabled = 0:
+let g:airline#extensions#wordcount#enabled = 0
 
 " Make the syntastic error in airline readable (but ugly):
 call airline#parts#define_accent('syntastic', 'yellow')
