@@ -30,6 +30,9 @@ Plugin 'jistr/vim-nerdtree-tabs'
 " Expand html abbreviations:
 Plugin 'mattn/emmet-vim'
 
+" For working with Mustache and Handlebars templates:
+Plugin 'mustache/vim-mustache-handlebars'
+
 " Markdown syntax highlighting etc:
 Plugin 'plasticboy/vim-markdown'
 
@@ -67,6 +70,7 @@ filetype plugin indent on
 " END Vundle config
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+set history=1000
 
 " Prevent some security exploits.
 set modelines=0
@@ -300,6 +304,10 @@ highlight link SyntasticStyleErrorSign SignColumn
 highlight link SyntasticStyleWarningSign SignColumn
 
 "let g:syntastic_javascript_checkers = ['xo']
+
+" Disable HTML syntax checking for Handlebars templates as it's buggered.
+" https://github.com/mustache/vim-mustache-handlebars/issues/6
+let g:syntastic_filetype_map = { 'html.handlebars': 'handlebars' }
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
