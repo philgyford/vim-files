@@ -48,6 +48,10 @@ Reload it (`:source $MYVIMRC`) and run `:PluginInstall`.
 
 `:PluginUpdate`
 
+### Update Black
+
+`:BlackUpgrade` and restart vim.
+
 
 ## Removing a plugin
 
