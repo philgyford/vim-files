@@ -2,19 +2,22 @@
 " General {{{
 set nocompatible						" Stop being vi compatible.
 filetype off
-set backspace=indent,eol,start
+set backspace=indent,eol,start			" Allow backspace beyond insertion point
 set encoding=utf-8
 set fileencoding=utf-8
-set scrolloff=3
+set fileformats=unix,dos,mac			" Prefer unix
+set scrolloff=3							" Keep cursor away from this many chars top/bot
 set showmode
 set hidden
 set visualbell
 set ttyfast
-set ruler
-set laststatus=2
+set ruler								" Show row/col and percentage
+set laststatus=2						" Always show the status bar
 set relativenumber
 set undofile
 set autoread							" Reload file if changed (only in gvim)
+set shortmess+=A						" Don't bother me when a swapfile exists
+set suffixes+=.pyc						" Ignore these files when tab-completing
 set history=1000
 set directory=~/.vim/swap/				" Put all swap files in one place
 set backupcopy=yes						" Stop Finder labels disappearing when saving a file
@@ -36,6 +39,9 @@ vnoremap <F1> <ESC>
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
+" Shows git diff in the 'gutter':
+Plugin 'airblade/vim-gitgutter'
+
 " Solarized colour schemes:
 Plugin 'altercation/vim-colors-solarized'
 
@@ -50,6 +56,9 @@ Plugin 'ConradIrwin/vim-bracketed-paste'
 
 " Quick file browsing/matching:
 Plugin 'ctrlpvim/ctrlp.vim'
+
+" Status bar:
+Plugin 'itchyny/lightline.vim'
 
 " Make NERDTree be independent from tabs:
 Plugin 'jistr/vim-nerdtree-tabs'
@@ -81,28 +90,27 @@ Plugin 'tpope/vim-fugitive'
 " Surround text with "(<>)" etc:
 Plugin 'tpope/vim-surround'
 
-" Better status/tabline:
-Plugin 'vim-airline/vim-airline'
-
-" Themes for vim-airline:
-Plugin 'vim-airline/vim-airline-themes'
-
-Plugin 'vim-syntastic/syntastic'
-
 " Otherwise it'll delete itself if you do PluginClean:
 Plugin 'VundleVim/Vundle.vim'
+
+" ALE, Asynchronous Lint Engine
+Plugin 'w0rp/ale'
 
 call vundle#end()
 filetype plugin indent on
 " }}}
 
-" Colours {{{
+" Colors {{{
 syntax enable
 
 " Using http://ethanschoonover.com/solarized/vim-colors-solarized
 " Alternatively set background=dark.
 set background=light
 colorscheme solarized
+
+" Make trailing spaces very visible
+highlight ExtraWhiteSpace ctermbg=Yellow guibg=Yellow
+match ExtraWhitespace /\s\+$/
 " }}}
 
 " Spaces & Tabs {{{
@@ -134,9 +142,9 @@ set showcmd				" Show command in bottom bar
 set cursorline			" Highlight current line
 set wildmenu			" Visual autocomplete for command menu
 set wildmode=longest:list,full
+set wildignore=~,.git,node_modules,*.pyc	" Ignores for tab completion
 set lazyredraw			" Redraw only when we need to
 set showmatch			" Highlight matching parenthesis
-
 " }}}
 
 " Searching {{{
@@ -146,6 +154,15 @@ set incsearch			" Search as characters are entered
 set hlsearch			" Highlight all matches
 nnoremap / /\v
 vnoremap / /\v
+" }}}
+
+" Folding {{{
+set foldmethod=indent   " fold based on indent level
+set foldnestmax=10      " max 10 depth
+set nofoldenable        " don't fold files by default on open
+" Fold/unfold using space:
+nnoremap <space> za
+set foldlevelstart=10   " start with fold level of 1
 " }}}
 
 " Moving {{{
@@ -215,8 +232,8 @@ nmap <leader>4 <leader>w<CR> :execute 'NERDTreeTabsOpen'<CR> <leader>3<CR> <C-l>
 " Autogroups {{{
 augroup configgroup
 	autocmd!
-	autocmd BufWritePre *.php,*.py,*.js,*.txt,*.hs,*.java,*.md
-	            \:call <SID>StripTrailingWhitespaces()
+	"autocmd BufWritePre *.php,*.py,*.js,*.txt,*.hs,*.java,*.md
+				"\:call <SID>StripTrailingWhitespaces()
 
 	autocmd FileType gitcommit setlocal textwidth=72
 	autocmd FileType gitcommit setlocal colorcolumn+=51		" Extra column for titles:
@@ -236,7 +253,7 @@ augroup configgroup
 	autocmd FileType json setlocal softtabstop=2
 	autocmd FileType json setlocal tabstop=2
 
-	autocmd FileType python setlocal textwidth=72
+	autocmd FileType python setlocal textwidth=79
 	autocmd FileType python setlocal colorcolumn+=72		" Extra column for comments
 	autocmd FileType python setlocal expandtab
 	autocmd FileType python setlocal shiftwidth=4
@@ -268,13 +285,97 @@ nnoremap <Leader>fu :CtrlPFunky<Cr>
 " narrow list down with a word under cursor:
 nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
 let g:ctrlp_funky_syntax_highlight = 1			" Experimental syntax highlighting.
-set wildignore+=*.git,*.pyc						" Ignores for ctrlp.
 " }}}
 
-" Airline {{{
-let g:airline#extensions#syntastic#enabled = 1	" Enable airline syntastic integration:
-let g:airline#extensions#wordcount#enabled = 0	" Disable wordcount:
-call airline#parts#define_accent('syntastic', 'yellow')	" Make syntastic error in airline readable:
+" GitGutter {{{
+nmap ]g :GitGutterNextHunk<CR>
+nmap [g :GitGutterPrevHunk<CR>
+augroup VimDiff
+  autocmd!
+  autocmd VimEnter,FilterWritePre * if &diff | GitGutterDisable | endif
+augroup END
+" }}}
+
+" Lightline {{{
+let g:lightline = {
+	\ 'colorscheme': 'solarized',
+\ 'active': {
+\   'left': [['mode', 'paste'], ['filename', 'modified']],
+\   'right': [['lineinfo'], ['percent'], ['readonly', 'linter_warnings', 'linter_errors', 'linter_ok']]
+\ },
+\ 'component_expand': {
+\   'linter_warnings': 'LightlineLinterWarnings',
+\   'linter_errors': 'LightlineLinterErrors',
+\   'linter_ok': 'LightlineLinterOK'
+\ },
+\ 'component_type': {
+\   'readonly': 'error',
+\   'linter_warnings': 'warning',
+\   'linter_errors': 'error'
+\ },
+	\ }
+
+" From https://github.com/statico/dotfiles/blob/master/.vim/vimrc
+
+function! LightlineLinterWarnings() abort
+  let l:counts = ale#statusline#Count(bufnr(''))
+  let l:all_errors = l:counts.error + l:counts.style_error
+  let l:all_non_errors = l:counts.total - l:all_errors
+  return l:counts.total == 0 ? '' : printf('%d ◆', all_non_errors)
+endfunction
+
+function! LightlineLinterErrors() abort
+  let l:counts = ale#statusline#Count(bufnr(''))
+  let l:all_errors = l:counts.error + l:counts.style_error
+  let l:all_non_errors = l:counts.total - l:all_errors
+  return l:counts.total == 0 ? '' : printf('%d ✗', all_errors)
+endfunction
+
+function! LightlineLinterOK() abort
+  let l:counts = ale#statusline#Count(bufnr(''))
+  let l:all_errors = l:counts.error + l:counts.style_error
+  let l:all_non_errors = l:counts.total - l:all_errors
+  return l:counts.total == 0 ? '✓ ' : ''
+endfunction
+
+" Update and show lightline but only if it's visible (e.g., not in Goyo)
+function! s:MaybeUpdateLightline()
+  if exists('#lightline')
+    call lightline#update()
+  end
+endfunction
+
+" Update the lightline scheme from the colorscheme. Hopefully.
+function! s:UpdateLightlineColorScheme()
+  let g:lightline.colorscheme = g:colors_name
+  call lightline#init()
+endfunction
+
+augroup _lightline
+  autocmd!
+  autocmd User ALELint call s:MaybeUpdateLightline()
+  autocmd ColorScheme * call s:UpdateLightlineColorScheme()
+augroup END
+
+" }}}
+
+" ALE {{{
+let g:ale_open_list = 1
+let g:ale_sign_warning = '▲'
+let g:ale_sign_error = '✗'
+highlight link ALEWarningSign String
+highlight link ALEErrorSign Title
+highlight clear ALEErrorSign
+highlight clear ALEWarningSign
+nmap <leader>f <Plug>(ale_fix)
+"" Jump to next/previous error:
+nmap <silent> <leader>aj :ALENext<cr>
+nmap <silent> <leader>ak :ALEPrevious<cr>
+
+augroup VimDiff
+  autocmd!
+  autocmd VimEnter,FilterWritePre * if &diff | ALEDisable | endif
+augroup END
 " }}}
 
 " NERDTree {{{
@@ -283,34 +384,6 @@ call airline#parts#define_accent('syntastic', 'yellow')	" Make syntastic error i
 " For NerdTreeTabs
 map <leader>d :execute 'NERDTreeTabsToggle'<CR>
 let NERDTreeIgnore = ['__pycache__$', '\.pyc$', '\.git$']	" Ignores for NERDTree.
-" }}}
-
-" Syntastsic {{{
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_loc_list_height = 5
-let g:syntastic_auto_loc_list = 0
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 1
-
-"let g:syntastic_error_symbol = '❌'
-"let g:syntastic_style_error_symbol = '⁉️'
-"let g:syntastic_warning_symbol = '❗️'
-"let g:syntastic_style_warning_symbol = '💩'
-
-highlight link SyntasticErrorSign SignColumn
-highlight link SyntasticWarningSign SignColumn
-highlight link SyntasticStyleErrorSign SignColumn
-highlight link SyntasticStyleWarningSign SignColumn
-
-"let g:syntastic_javascript_checkers = ['xo']
-
-" Disable HTML syntax checking for Handlebars templates as it's buggered.
-" https://github.com/mustache/vim-mustache-handlebars/issues/6
-let g:syntastic_filetype_map = { 'html.handlebars': 'handlebars' }
 " }}}
 
 " Custom Functions {{{
