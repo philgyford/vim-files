@@ -302,6 +302,9 @@ nnoremap <Leader>fu :CtrlPFunky<Cr>
 " narrow list down with a word under cursor:
 nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
 let g:ctrlp_funky_syntax_highlight = 1			" Experimental syntax highlighting.
+
+" Use the nearest .git directory as the cwd:
+let g:ctrlp_working_path_mode = 'r'
 " }}}
 
 " GitGutter {{{
