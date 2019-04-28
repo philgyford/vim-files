@@ -1,6 +1,9 @@
 set macligatures
-set guifont=FiraCode-Regular:h10
+
+set guifont=FuraCodeNerdFontComplete-Retina:h10
+"set guifont=FiraCode-Regular:h10
 "set guifont=Ubuntu\ Mono:h14
+"
 "set linespace=2
 set antialias
 

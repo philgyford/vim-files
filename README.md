@@ -26,16 +26,32 @@ the bundles will be stored.
 
 Open MacVim and run `:PluginInstall`.
 
-### Font
+### Extras
 
-`gvimrc` specifies the [Fira Code](https://github.com/tonsky/FiraCode) font. To
+#### Font
+
+We use a variant of [Fira Code](https://github.com/tonsky/FiraCode) that
+includes icons which are used by `vim-devicons`. Install it with:
+
+	$ cd ~/Library/Fonts && curl -fLo "Fura Code Retina Nerd Font Complete.otf" https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/FiraCode/Retina/complete/Fura%20Code%20Retina%20Nerd%20Font%20Complete.otf
+
+(Previously we used the plain Fira Code, installed with Homebrew:
 install with [Homebrew](http://brew.sh/): 
 
 	$ brew tap caskroom/fonts
 	$ brew cask install font-fira-code
+)
+
+#### Linting and formatting
+
+* Install Black for python formatting: `pip install black`
+
+* Install flake8 for python linting with ALE: `pip install flake8`
 
 
-## Install a new plugin
+## Using Vundle
+
+### Install a new plugin
 
 Add a new line in `vimrc` like:
 
@@ -43,12 +59,12 @@ Add a new line in `vimrc` like:
 
 Reload it (`:source $MYVIMRC`) and run `:PluginInstall`.
 
-
-## Update all configured plugins
+### Update all configured plugins
 
 `:PluginUpdate`
 
-### Update Black
+
+## Update Black
 
 `:BlackUpgrade` and restart vim.
 

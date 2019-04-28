@@ -1,4 +1,3 @@
-
 " General {{{
 set nocompatible						" Stop being vi compatible.
 filetype off
@@ -39,41 +38,26 @@ vnoremap <F1> <ESC>
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
-" Shows git diff in the 'gutter':
-Plugin 'airblade/vim-gitgutter'
-
-" Solarized colour schemes:
-Plugin 'altercation/vim-colors-solarized'
+" ALE, Asynchronous Lint Engine
+Plugin 'w0rp/ale'
 
 " Python formatting:
 Plugin 'ambv/black'
 
-" Colorise CSS colors:
-Plugin 'ap/vim-css-color'
-
-" Stops pasting text into vim making a mess:
-Plugin 'ConradIrwin/vim-bracketed-paste'
+" Use ctrl-p to jump to function names:
+Plugin 'tacahiroy/ctrlp-funky'
 
 " Quick file browsing/matching:
 Plugin 'ctrlpvim/ctrlp.vim'
 
-" Status bar:
-Plugin 'itchyny/lightline.vim'
-
-" Make NERDTree be independent from tabs:
-Plugin 'jistr/vim-nerdtree-tabs'
+" Auto closing of quotes, brackets, etc:
+Plugin 'Raimondi/delimitMate'
 
 " Expand html abbreviations:
 Plugin 'mattn/emmet-vim'
 
-" For working with Mustache and Handlebars templates:
-Plugin 'mustache/vim-mustache-handlebars'
-
-" Markdown syntax highlighting etc:
-Plugin 'plasticboy/vim-markdown'
-
-" Auto closing of quotes, brackets, etc:
-Plugin 'Raimondi/delimitMate'
+" Status bar:
+Plugin 'itchyny/lightline.vim'
 
 " Make code commenting better:
 Plugin 'scrooloose/nerdcommenter'
@@ -81,20 +65,46 @@ Plugin 'scrooloose/nerdcommenter'
 " Sidebar for file navigation:
 Plugin 'scrooloose/nerdtree'
 
-" Use ctrl-p to jump to function names:
-Plugin 'tacahiroy/ctrlp-funky'
+" Show git status flags in NERDTree:
+Plugin 'Xuyuanp/nerdtree-git-plugin'
+
+" Make NERDTree be independent from tabs:
+Plugin 'jistr/vim-nerdtree-tabs'
+
+" NOTE: This causes the vim-devicons in NERDTree to get cut in half:
+"   https://github.com/ryanoasis/vim-devicons/issues/133
+" Extra syntax and highlight for nerdtree files
+"Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
+
+" Stops pasting text into vim making a mess:
+Plugin 'ConradIrwin/vim-bracketed-paste'
+
+" Solarized colour schemes:
+Plugin 'altercation/vim-colors-solarized'
+
+" Colorise CSS colors:
+Plugin 'ap/vim-css-color'
+
+" Add file type icons to NERDTree, lightline, etc:
+Plugin 'ryanoasis/vim-devicons'
 
 " Git wrapper:
 Plugin 'tpope/vim-fugitive'
+
+" Shows git diff in the 'gutter':
+Plugin 'airblade/vim-gitgutter'
+
+" Markdown syntax highlighting etc:
+Plugin 'plasticboy/vim-markdown'
+
+" For working with Mustache and Handlebars templates:
+Plugin 'mustache/vim-mustache-handlebars'
 
 " Surround text with "(<>)" etc:
 Plugin 'tpope/vim-surround'
 
 " Otherwise it'll delete itself if you do PluginClean:
 Plugin 'VundleVim/Vundle.vim'
-
-" ALE, Asynchronous Lint Engine
-Plugin 'w0rp/ale'
 
 call vundle#end()
 filetype plugin indent on
@@ -215,7 +225,7 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
 " Change window size.
-set lines=96 columns=117						" Default window size
+set lines=96 columns=85						" Default window size
 " Single document, no nerdtree:
 nmap <leader>1 :set lines=96 columns=85<CR>
 " Wide enough for nerdtree:
@@ -384,6 +394,34 @@ augroup END
 " For NerdTreeTabs
 map <leader>d :execute 'NERDTreeTabsToggle'<CR>
 let NERDTreeIgnore = ['__pycache__$', '\.pyc$', '\.git$']	" Ignores for NERDTree.
+
+" Open NERDtree automatically when opening a directory:
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
+
+" }}}
+
+" NERDTree Git {{ {
+" Show ignored status (might be slow):
+let g:NERDTreeShowIgnoredStatus = 1
+" Set symbols for statuses:
+let g:NERDTreeIndicatorMapCustom = {
+    \ "Modified"  : "M",
+    \ "Staged"    : "S",
+    \ "Untracked" : "U",
+    \ "Renamed"   : "R",
+    \ "Unmerged"  : "u",
+    \ "Deleted"   : "D",
+    \ "Dirty"     : "✗",
+    \ "Clean"     : "✔︎",
+    \ 'Ignored'   : '-',
+    \ "Unknown"   : "?"
+    \ }
+" }}}
+
+" Vim Devicons {{{
+" The amount of space to use after the glyph character (default ' ')
+let g:WebDevIconsNerdTreeAfterGlyphPadding = ''
 " }}}
 
 " Custom Functions {{{
@@ -399,7 +437,6 @@ function! <SID>StripTrailingWhitespaces()
 	call cursor(l, c)
 endfunc
 " }}}
-
 
 " Make ,CR clear search. Maybe? Not sure.
 nnoremap <tab> %
@@ -424,4 +461,4 @@ let python_highlight_all = 1
 " Set this to fold using markers, instead of indentation,
 " close every fold by default (i.e. when the file is opened).
 " Assumes we have 'set modelines=1' elsewhere.
-" vim:foldmethod=marker:foldlevel=0
+" vim:foldmethod=marker:foldenable:foldlevel=0
