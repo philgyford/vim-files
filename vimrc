@@ -112,14 +112,17 @@ filetype plugin indent on
 
 " Colors {{{
 syntax enable
-
-" Using http://ethanschoonover.com/solarized/vim-colors-solarized
-" Alternatively set background=dark.
-set background=light
 colorscheme solarized
 
+" Using http://ethanschoonover.com/solarized/vim-colors-solarized
+if has('gui_running')
+    set background=light
+else
+    set background=dark
+endif
+ 
 " Make trailing spaces very visible
-highlight ExtraWhiteSpace ctermbg=Yellow guibg=Yellow
+highlight ExtraWhiteSpace ctermbg=Black guibg=#eee8d5
 match ExtraWhitespace /\s\+$/
 " }}}
 
@@ -155,6 +158,8 @@ set wildmode=longest:list,full
 set wildignore=~,.git,node_modules,*.pyc	" Ignores for tab completion
 set lazyredraw			" Redraw only when we need to
 set showmatch			" Highlight matching parenthesis
+" Default window size (same as an option in 'change window size', below):
+set lines=96 columns=118
 " }}}
 
 " Searching {{{
@@ -224,8 +229,7 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
-" Change window size.
-set lines=96 columns=85						" Default window size
+" Change window size (one of these should be the same as in 'default window size', above:
 " Single document, no nerdtree:
 nmap <leader>1 :set lines=96 columns=85<CR>
 " Wide enough for nerdtree:
@@ -287,11 +291,14 @@ augroup END
 " CtrlP {{{
 " Map ,t to open ctrlp:
 nnoremap <leader>t :CtrlP<CR>
+
 " Cmd-Shift-P to clear the cache (refresh list of files):
 nnoremap <silent> <D-P> :ClearCtrlPCache<CR>
 let g:ctrlp_extensions = ['funky']				" Add ctrlp-funky extension
+
 " Set up ctrlp-funky extension:
 nnoremap <Leader>fu :CtrlPFunky<Cr>
+
 " narrow list down with a word under cursor:
 nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
 let g:ctrlp_funky_syntax_highlight = 1			" Experimental syntax highlighting.
@@ -438,6 +445,9 @@ function! <SID>StripTrailingWhitespaces()
 endfunc
 " }}}
 
+
+" Miscellaneous stuff...
+
 " Make ,CR clear search. Maybe? Not sure.
 nnoremap <tab> %
 vnoremap <tab> %
@@ -453,9 +463,10 @@ let g:vim_markdown_folding_disabled=1
 let python_highlight_all = 1
 
 
-" Over the years, inspired by:
-" Some of this from http://stevelosh.com/blog/2010/09/coming-home-to-vim/
-" And https://dougblack.io/words/a-good-vimrc.html
+" Some of this inspired by:
+"	http://stevelosh.com/blog/2010/09/coming-home-to-vim/
+"	https://dougblack.io/words/a-good-vimrc.html
+"	https://statico.github.io/vim3.html
 
 
 " Set this to fold using markers, instead of indentation,
