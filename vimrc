@@ -6,6 +6,16 @@ set encoding=utf-8
 set fileencoding=utf-8
 set fileformats=unix,dos,mac        " Prefer unix
 set scrolloff=3                     " Keep cursor away from this many chars top/bot
+
+" See https://vimhelp.org/change.txt.html#fo-table
+" Default is tcq
+" c - Auto-wrap comments using textwidth, inserting comment leader.
+" n - recognize numbered lists.
+" q - Allow formatting of comments with '<leader>gq'
+" r - Automatically insert the current comment leader after hitting <Enter>.
+" 1 - Don't break a line after a one-letter word, but before it (if possible).
+set formatoptions=cnqr1
+
 set showmode
 set hidden
 set visualbell
@@ -492,7 +502,6 @@ endfunc
 nnoremap <tab> %
 vnoremap <tab> %
 
-set formatoptions=qrn1
 
 let g:vim_markdown_folding_disabled=1
 
