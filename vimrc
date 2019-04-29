@@ -1,30 +1,30 @@
 " General {{{
-set nocompatible						" Stop being vi compatible.
+set nocompatible                    " Stop being vi compatible.
 filetype off
-set backspace=indent,eol,start			" Allow backspace beyond insertion point
+set backspace=indent,eol,start      " Allow backspace beyond insertion point
 set encoding=utf-8
 set fileencoding=utf-8
-set fileformats=unix,dos,mac			" Prefer unix
-set scrolloff=3							" Keep cursor away from this many chars top/bot
+set fileformats=unix,dos,mac        " Prefer unix
+set scrolloff=3                     " Keep cursor away from this many chars top/bot
 set showmode
 set hidden
 set visualbell
 set ttyfast
-set ruler								" Show row/col and percentage
-set laststatus=2						" Always show the status bar
+set ruler                           " Show row/col and percentage
+set laststatus=2                    " Always show the status bar
 set relativenumber
 set undofile
-set autoread							" Reload file if changed (only in gvim)
-set shortmess+=A						" Don't bother me when a swapfile exists
-set suffixes+=.pyc						" Ignore these files when tab-completing
+set autoread                        " Reload file if changed (only in gvim)
+set shortmess+=A                    " Don't bother me when a swapfile exists
+set suffixes+=.pyc                  " Ignore these files when tab-completing
 set history=1000
-set directory=~/.vim/swap/				" Put all swap files in one place
-set backupcopy=yes						" Stop Finder labels disappearing when saving a file
-set go-=T								" Hide MacVim toolbar
-set wrap								" Wrap long lines visually (not actually)
-set linebreak							" Wrap at break characters
-set nolist								" Something to do with lists, wrapping and end of line characters?
-set textwidth=79						" Default line width for wrapping
+set directory=~/.vim/swap/          " Put all swap files in one place
+set backupcopy=yes                  " Stop Finder labels disappearing when saving a file
+set go-=T                           " Hide MacVim toolbar
+set wrap                            " Wrap long lines visually (not actually)
+set linebreak                       " Wrap at break characters
+set nolist                          " Something to do with lists, wrapping and end of line characters?
+set textwidth=79                    " Default line width for wrapping
 set colorcolumn=+1
 " Disable help key.
 inoremap <F1> <ESC>
@@ -51,7 +51,7 @@ Plugin 'Raimondi/delimitMate'
 Plugin 'mattn/emmet-vim'
 
 " Fuzzy file finder, like Ctrlp:
-set rtp+=/usr/local/opt/fzf			" Installed via homebrew
+set rtp+=/usr/local/opt/fzf            " Installed via homebrew
 Plugin 'junegunn/fzf.vim'
 
 " Status bar:
@@ -123,12 +123,12 @@ match ExtraWhitespace /\s\+$/
 
 " Spaces & Tabs {{{
 set autoindent
-set tabstop=4										" Number of visual spaces per tab
-set shiftwidth=4									" Number of spaces for each step of (auto)indent and >> <<
-set softtabstop=4									" Number of spaces in tab when editing
-set modelines=1										" Enables the folding thing at the end of this file
-set listchars=tab:▸\ ,trail:·,eol:¬					" Show invisibles.
-filetype indent on									" Load filetype-specific indent files
+set tabstop=4                           " Number of visual spaces per tab
+set shiftwidth=4                        " Number of spaces for each step of (auto)indent and >> <<
+set softtabstop=4                       " Number of spaces in tab when editing
+set modelines=1                         " Enables the folding thing at the end of this file
+set listchars=tab:▸\ ,trail:·,eol:¬     " Show invisibles.
+filetype indent on                      " Load filetype-specific indent files
 filetype plugin on
 " Keep blocks selected when outdenting
 vnoremap < <gv
@@ -146,31 +146,31 @@ map \S <Esc>:set ts=4 sts=4 sw=4 expandtab<CR>
 " }}}
 
 " UI Layout {{{
-set showcmd				" Show command in bottom bar
-set cursorline			" Highlight current line
-set wildmenu			" Visual autocomplete for command menu
+set showcmd                                 " Show command in bottom bar
+set cursorline                              " Highlight current line
+set wildmenu                                " Visual autocomplete for command menu
 set wildmode=longest:list,full
-set wildignore=~,.git,node_modules,*.pyc	" Ignores for tab completion
-set lazyredraw			" Redraw only when we need to
-set showmatch			" Highlight matching parenthesis
+set wildignore=~,.git,node_modules,*.pyc    " Ignores for tab completion
+set lazyredraw                              " Redraw only when we need to
+set showmatch                               " Highlight matching parenthesis
 " }}}
 
 " Searching {{{
-set ignorecase			" Ignore case when searching, but...
-set smartcase			" ...if pattern contains an uppercase char, it is case sensitive
-set incsearch			" Search as characters are entered
-set hlsearch			" Highlight all matches
+set ignorecase                              " Ignore case when searching, but...
+set smartcase                               " ...if pattern contains an uppercase char, it is case sensitive
+set incsearch                               " Search as characters are entered
+set hlsearch                                " Highlight all matches
 nnoremap / /\v
 vnoremap / /\v
 " }}}
 
 " Folding {{{
-set foldmethod=indent   " fold based on indent level
-set foldnestmax=10      " max 10 depth
-set nofoldenable        " don't fold files by default on open
+set foldmethod=indent       " fold based on indent level
+set foldnestmax=10          " max 10 depth
+set nofoldenable            " don't fold files by default on open
 " Fold/unfold using space:
 nnoremap <space> za
-set foldlevelstart=10   " start with fold level of 1
+set foldlevelstart=10       " start with fold level of 1
 " }}}
 
 " Moving {{{
@@ -224,7 +224,7 @@ nnoremap <C-l> <C-w>l
 
 " Default window size (same as an option in 'change window size', below):
 if has('gui_running')
-	set lines=96 columns=118
+    set lines=96 columns=118
 endif
 
 " Change window size (one of these should be the same as in 'default window size', above:
@@ -243,46 +243,46 @@ nmap <leader>4 <leader>w<CR> :execute 'NERDTreeTabsOpen'<CR> <leader>3<CR> <C-l>
 
 " Autogroups {{{
 augroup configgroup
-	autocmd!
-	"autocmd BufWritePre *.php,*.py,*.js,*.txt,*.hs,*.java,*.md
-				"\:call <SID>StripTrailingWhitespaces()
+    autocmd!
+    "autocmd BufWritePre *.php,*.py,*.js,*.txt,*.hs,*.java,*.md
+                "\:call <SID>StripTrailingWhitespaces()
 
-	autocmd FileType gitcommit setlocal textwidth=72
-	autocmd FileType gitcommit setlocal colorcolumn+=51		" Extra column for titles:
+    autocmd FileType gitcommit setlocal textwidth=72
+    autocmd FileType gitcommit setlocal colorcolumn+=51     " Extra column for titles:
 
-	autocmd FileType html setlocal expandtab
-	autocmd FileType html setlocal shiftwidth=2
-	autocmd FileType html setlocal softtabstop=2
-	autocmd FileType html setlocal tabstop=2
+    autocmd FileType html setlocal expandtab
+    autocmd FileType html setlocal shiftwidth=2
+    autocmd FileType html setlocal softtabstop=2
+    autocmd FileType html setlocal tabstop=2
 
-	autocmd FileType javascript setlocal expandtab
-	autocmd FileType javascript setlocal shiftwidth=2
-	autocmd FileType javascript setlocal softtabstop=2
-	autocmd FileType javascript setlocal tabstop=2
+    autocmd FileType javascript setlocal expandtab
+    autocmd FileType javascript setlocal shiftwidth=2
+    autocmd FileType javascript setlocal softtabstop=2
+    autocmd FileType javascript setlocal tabstop=2
 
-	autocmd FileType json setlocal expandtab
-	autocmd FileType json setlocal shiftwidth=2
-	autocmd FileType json setlocal softtabstop=2
-	autocmd FileType json setlocal tabstop=2
+    autocmd FileType json setlocal expandtab
+    autocmd FileType json setlocal shiftwidth=2
+    autocmd FileType json setlocal softtabstop=2
+    autocmd FileType json setlocal tabstop=2
 
-	autocmd FileType python setlocal textwidth=79
-	autocmd FileType python setlocal colorcolumn+=72		" Extra column for comments
-	autocmd FileType python setlocal expandtab
-	autocmd FileType python setlocal shiftwidth=4
-	autocmd FileType python setlocal softtabstop=4
-	autocmd FileType python setlocal tabstop=4
+    autocmd FileType python setlocal textwidth=79
+    autocmd FileType python setlocal colorcolumn+=72        " Extra column for comments
+    autocmd FileType python setlocal expandtab
+    autocmd FileType python setlocal shiftwidth=4
+    autocmd FileType python setlocal softtabstop=4
+    autocmd FileType python setlocal tabstop=4
 " Formatting with Black plugin:
-	autocmd FileType python nnoremap <buffer> <leader>fo :Black<CR>
+    autocmd FileType python nnoremap <buffer> <leader>fo :Black<CR>
 
-	autocmd FileType ruby setlocal expandtab
-	autocmd FileType ruby setlocal shiftwidth=2
-	autocmd FileType ruby setlocal softtabstop=2
-	autocmd FileType ruby setlocal tabstop=2
+    autocmd FileType ruby setlocal expandtab
+    autocmd FileType ruby setlocal shiftwidth=2
+    autocmd FileType ruby setlocal softtabstop=2
+    autocmd FileType ruby setlocal tabstop=2
 
-	autocmd FileType yaml setlocal expandtab
-	autocmd FileType yaml setlocal shiftwidth=2
-	autocmd FileType yaml setlocal softtabstop=2
-	autocmd FileType yaml setlocal tabstop=2
+    autocmd FileType yaml setlocal expandtab
+    autocmd FileType yaml setlocal shiftwidth=2
+    autocmd FileType yaml setlocal softtabstop=2
+    autocmd FileType yaml setlocal tabstop=2
 augroup END
 " }}}
 
@@ -347,7 +347,7 @@ augroup END
 
 " Lightline {{{
 let g:lightline = {
-	\ 'colorscheme': 'solarized',
+    \ 'colorscheme': 'solarized',
 \ 'active': {
 \   'left': [['mode', 'paste'], ['filename', 'modified']],
 \   'right': [['lineinfo'], ['percent'], ['readonly', 'linter_warnings', 'linter_errors', 'linter_ok']]
@@ -362,7 +362,7 @@ let g:lightline = {
 \   'linter_warnings': 'warning',
 \   'linter_errors': 'error'
 \ },
-	\ }
+    \ }
 
 " From https://github.com/statico/dotfiles/blob/master/.vim/vimrc
 
@@ -413,7 +413,7 @@ augroup END
 "map <leader>d :execute 'NERDTreeToggle ' . getcwd()<CR>
 " For NerdTreeTabs
 map <leader>d :execute 'NERDTreeTabsToggle'<CR>
-let NERDTreeIgnore = ['__pycache__$', '\.pyc$', '\.git$']	" Ignores for NERDTree.
+let NERDTreeIgnore = ['__pycache__$', '\.pyc$', '\.git$']    " Ignores for NERDTree.
 
 " Open NERDtree automatically when opening a directory:
 autocmd StdinReadPre * let s:std_in=1
@@ -448,13 +448,13 @@ let g:WebDevIconsNerdTreeAfterGlyphPadding = ''
 " strips trailing whitespace at the end of files. this
 " is called on buffer write in the autogroup above.
 function! <SID>StripTrailingWhitespaces()
-	" save last search & cursor position
-	let _s=@/
-	let l = line(".")
-	let c = col(".")
-	%s/\s\+$//e
-	let @/=_s
-	call cursor(l, c)
+    " save last search & cursor position
+    let _s=@/
+    let l = line(".")
+    let c = col(".")
+    %s/\s\+$//e
+    let @/=_s
+    call cursor(l, c)
 endfunc
 " }}}
 
@@ -473,12 +473,12 @@ let python_highlight_all = 1
 
 
 " Some of this inspired by:
-"	http://stevelosh.com/blog/2010/09/coming-home-to-vim/
-"	https://dougblack.io/words/a-good-vimrc.html
-"	https://statico.github.io/vim3.html
+"    http://stevelosh.com/blog/2010/09/coming-home-to-vim/
+"    https://dougblack.io/words/a-good-vimrc.html
+"    https://statico.github.io/vim3.html
 
 
 " Set this to fold using markers, instead of indentation,
 " close every fold by default (i.e. when the file is opened).
 " Assumes we have 'set modelines=1' elsewhere.
-" vim:foldmethod=marker:foldenable:foldlevel=0
+" vim:foldmethod=marker:foldenable:foldlevel=0:ts=4:sts=4:sw=4:expandtab
