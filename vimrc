@@ -86,9 +86,6 @@ Plugin 'ap/vim-css-color'
 " Add file type icons to NERDTree, lightline, etc:
 Plugin 'ryanoasis/vim-devicons'
 
-" Git wrapper:
-Plugin 'tpope/vim-fugitive'
-
 " Shows git diff in the 'gutter':
 Plugin 'airblade/vim-gitgutter'
 
