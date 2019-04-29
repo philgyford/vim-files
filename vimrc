@@ -89,6 +89,9 @@ Plugin 'ryanoasis/vim-devicons'
 " Shows git diff in the 'gutter':
 Plugin 'airblade/vim-gitgutter'
 
+" Display indent levels visually:
+Plugin 'nathanaelkane/vim-indent-guides'
+
 " Markdown syntax highlighting etc:
 Plugin 'plasticboy/vim-markdown'
 
@@ -348,6 +351,21 @@ augroup VimDiff
   autocmd!
   autocmd VimEnter,FilterWritePre * if &diff | GitGutterDisable | endif
 augroup END
+" }}}
+
+" Indent Guides {{{
+" Use <leader>ig to toggle indent guides
+
+" Use it in startup:
+let g:indent_guides_enable_on_vim_startup = 1
+" Don't show the first one:
+let g:indent_guides_start_level = 2
+" Show vertical lines, instead of coloring the full width of each indent:
+let g:indent_guides_guide_size = 1
+" Use custom colors:
+let g:indent_guides_auto_colors = 0
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#eee8d5 ctermbg=0
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#eee8d5 ctermbg=0
 " }}}
 
 " Lightline {{{
