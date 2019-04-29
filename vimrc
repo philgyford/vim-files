@@ -283,6 +283,25 @@ augroup configgroup
 augroup END
 " }}}
 
+" ALE {{{
+let g:ale_open_list = 1
+let g:ale_sign_warning = '▲'
+let g:ale_sign_error = '✗'
+highlight link ALEWarningSign String
+highlight link ALEErrorSign Title
+highlight clear ALEErrorSign
+highlight clear ALEWarningSign
+nmap <leader>f <Plug>(ale_fix)
+"" Jump to next/previous error:
+nmap <silent> <leader>aj :ALENext<cr>
+nmap <silent> <leader>ak :ALEPrevious<cr>
+
+augroup VimDiff
+  autocmd!
+  autocmd VimEnter,FilterWritePre * if &diff | ALEDisable | endif
+augroup END
+" }}}
+
 " FZF {{{
 nnoremap <leader>t :Files<CR>
 nnoremap <leader>b :Buffers<CR>
@@ -311,7 +330,7 @@ command! -bang -nargs=* Find
   \   <bang>0 ? fzf#vim#with_preview('up:40%')
   \           : fzf#vim#with_preview('right:50%:hidden', '?'),
   \   <bang>0)
-
+"}}}
 
 " GitGutter {{{
 nmap ]g :GitGutterNextHunk<CR>
@@ -383,25 +402,6 @@ augroup _lightline
   autocmd ColorScheme * call s:UpdateLightlineColorScheme()
 augroup END
 
-" }}}
-
-" ALE {{{
-let g:ale_open_list = 1
-let g:ale_sign_warning = '▲'
-let g:ale_sign_error = '✗'
-highlight link ALEWarningSign String
-highlight link ALEErrorSign Title
-highlight clear ALEErrorSign
-highlight clear ALEWarningSign
-nmap <leader>f <Plug>(ale_fix)
-"" Jump to next/previous error:
-nmap <silent> <leader>aj :ALENext<cr>
-nmap <silent> <leader>ak :ALEPrevious<cr>
-
-augroup VimDiff
-  autocmd!
-  autocmd VimEnter,FilterWritePre * if &diff | ALEDisable | endif
-augroup END
 " }}}
 
 " NERDTree {{{
