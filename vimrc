@@ -66,9 +66,6 @@ Plugin 'scrooloose/nerdtree'
 " Show git status flags in NERDTree:
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 
-" Make NERDTree be independent from tabs:
-Plugin 'jistr/vim-nerdtree-tabs'
-
 " NOTE: This causes the vim-devicons in NERDTree to get cut in half:
 "   https://github.com/ryanoasis/vim-devicons/issues/133
 " Extra syntax and highlight for nerdtree files
@@ -245,8 +242,8 @@ nmap <leader>9 :set lines=96 columns=86<CR>
 " Set current vertical split to be our standard width:
 nmap <leader>0 :vertical resize 86<CR>
 
-" Split vertically, open NERDTreeTabs, make window big enough, resize left split:
-"nmap <leader>4 <leader>w<CR> :execute 'NERDTreeTabsOpen'<CR> <leader>3<CR> <C-l> <leader>0
+" Split vertically, open NERDTree, make window big enough, resize left split:
+"nmap <leader>4 <leader>w<CR> :execute 'NERDTreeOpen'<CR> <leader>3<CR> <C-l> <leader>0
 " }}}
 
 " Autogroups {{{
@@ -439,13 +436,13 @@ let g:NERDTreeMarkBookmarks = 0         " Don't mark Bookmarks
 let g:NERDTreeAutoDeleteBuffer = 1      " Delete buffer when deleting/renaming a file in a context menu
 let g:NERDTreeStatusLine = -1           " Use default statusline setting
 
-" For vanilla NERDTree:
-"map <leader>d :execute 'NERDTreeToggle ' . getcwd()<CR>
-" For NerdTreeTabs
-map <leader>d :execute 'NERDTreeTabsToggle'<CR>
-let NERDTreeIgnore = ['__pycache__$', '\.pyc$', '\.git$']    " Ignores for NERDTree.
+" Open/close NERDTree:
+map <leader>d :execute 'NERDTreeToggle ' . getcwd()<CR>
 
-" Open NERDtree automatically when opening a directory:
+" Ignores for NERDTree.
+let NERDTreeIgnore = ['__pycache__$', '\.pyc$', '\.git$']
+
+" Open NERDtree automatically, only when opening a directory:
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
 
