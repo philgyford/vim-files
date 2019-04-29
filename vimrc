@@ -227,18 +227,23 @@ if has('gui_running')
     set lines=96 columns=118
 endif
 
-" Change window size (one of these should be the same as in 'default window size', above:
+" Change window size:
+" (one of these should be the same as in 'default window size', above)
+
+" Wide enough for nerdtree and 1 document::
+nmap <leader>1 :set lines=96 columns=118<CR>
+" Wide enough for nerdtree and 2 documents:
+nmap <leader>2 :set lines=96 columns=205<CR>
+" Wide enough for nerdtree and 3 documents:
+nmap <leader>3 :set lines=96 columns=292<CR>
+
 " Single document, no nerdtree:
-nmap <leader>1 :set lines=96 columns=85<CR>
-" Wide enough for nerdtree:
-nmap <leader>2 :set lines=96 columns=118<CR>
-" Wide enough for nerdtree and two documents:
-nmap <leader>3 :set lines=96 columns=205<CR>
+nmap <leader>9 :set lines=96 columns=86<CR>
 " Set current vertical split to be our standard width:
-nmap <leader>0 :vertical resize 85<CR>
+nmap <leader>0 :vertical resize 86<CR>
 
 " Split vertically, open NERDTreeTabs, make window big enough, resize left split:
-nmap <leader>4 <leader>w<CR> :execute 'NERDTreeTabsOpen'<CR> <leader>3<CR> <C-l> <leader>0
+"nmap <leader>4 <leader>w<CR> :execute 'NERDTreeTabsOpen'<CR> <leader>3<CR> <C-l> <leader>0
 " }}}
 
 " Autogroups {{{
@@ -411,6 +416,11 @@ augroup END
 " }}}
 
 " NERDTree {{{
+let g:NERDTreeMinimalUI = 1             " Disables the Bookmarks label
+let g:NERDTreeMarkBookmarks = 0         " Don't mark Bookmarks
+let g:NERDTreeAutoDeleteBuffer = 1      " Delete buffer when deleting/renaming a file in a context menu
+let g:NERDTreeStatusLine = -1           " Use default statusline setting
+
 " For vanilla NERDTree:
 "map <leader>d :execute 'NERDTreeToggle ' . getcwd()<CR>
 " For NerdTreeTabs
