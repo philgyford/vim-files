@@ -153,8 +153,6 @@ set wildmode=longest:list,full
 set wildignore=~,.git,node_modules,*.pyc	" Ignores for tab completion
 set lazyredraw			" Redraw only when we need to
 set showmatch			" Highlight matching parenthesis
-" Default window size (same as an option in 'change window size', below):
-set lines=96 columns=118
 " }}}
 
 " Searching {{{
@@ -223,6 +221,11 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
+
+" Default window size (same as an option in 'change window size', below):
+if has('gui_running')
+	set lines=96 columns=118
+endif
 
 " Change window size (one of these should be the same as in 'default window size', above:
 " Single document, no nerdtree:
@@ -305,8 +308,9 @@ augroup END
 " FZF {{{
 nnoremap <leader>t :Files<CR>
 nnoremap <leader>b :Buffers<CR>
-nnoremap <leader>r :Tags<CR>
-nnoremap <leader>ff :Find!<CR>
+"nnoremap <leader>r :Tags<CR>
+nnoremap <leader>ff :Find<CR>
+nnoremap <leader>ff! :Find!<CR>
 
 " Make fzf use ripgrep search by default:
 " --files: List files that would be searched but do not search
