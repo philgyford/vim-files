@@ -347,10 +347,12 @@ augroup END
 
 " Lightline {{{
 let g:lightline = {
-    \ 'colorscheme': 'solarized',
+\ 'colorscheme': 'solarized',
 \ 'active': {
-\   'left': [['mode', 'paste'], ['filename', 'modified']],
-\   'right': [['lineinfo'], ['percent'], ['readonly', 'linter_warnings', 'linter_errors', 'linter_ok']]
+\   'left': [['mode', 'paste'], ['filename', 'readonly', 'modified']],
+\   'right': [ ['percent', 'lineinfo'],
+\              ['fileencoding', 'filetype'],
+\              ['linter_warnings', 'linter_errors', 'linter_ok'] ]
 \ },
 \ 'component_expand': {
 \   'linter_warnings': 'LightlineLinterWarnings',
@@ -362,7 +364,7 @@ let g:lightline = {
 \   'linter_warnings': 'warning',
 \   'linter_errors': 'error'
 \ },
-    \ }
+\ }
 
 " From https://github.com/statico/dotfiles/blob/master/.vim/vimrc
 
