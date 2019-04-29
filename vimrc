@@ -44,17 +44,15 @@ Plugin 'w0rp/ale'
 " Python formatting:
 Plugin 'ambv/black'
 
-" Use ctrl-p to jump to function names:
-Plugin 'tacahiroy/ctrlp-funky'
-
-" Quick file browsing/matching:
-Plugin 'ctrlpvim/ctrlp.vim'
-
 " Auto closing of quotes, brackets, etc:
 Plugin 'Raimondi/delimitMate'
 
 " Expand html abbreviations:
 Plugin 'mattn/emmet-vim'
+
+" Fuzzy file finder, like Ctrlp:
+set rtp+=/usr/local/opt/fzf			" Installed via homebrew
+Plugin 'junegunn/fzf.vim'
 
 " Status bar:
 Plugin 'itchyny/lightline.vim'
@@ -288,24 +286,35 @@ augroup configgroup
 augroup END
 " }}}
 
-" CtrlP {{{
-" Map ,t to open ctrlp:
-nnoremap <leader>t :CtrlP<CR>
+" FZF {{{
+nnoremap <leader>t :Files<CR>
+nnoremap <leader>b :Buffers<CR>
+nnoremap <leader>r :Tags<CR>
+nnoremap <leader>ff :Find!<CR>
 
-" Cmd-Shift-P to clear the cache (refresh list of files):
-nnoremap <silent> <D-P> :ClearCtrlPCache<CR>
-let g:ctrlp_extensions = ['funky']				" Add ctrlp-funky extension
+" Make fzf use ripgrep search by default:
+" --files: List files that would be searched but do not search
+" --follow: Follow symlinks
+" --glob: Additional conditions for search (ignore .git/ folders etc.)
+let $FZF_DEFAULT_COMMAND = 'rg --files --follow --glob "!{.git,node_modules}/*" 2>/dev/null'
 
-" Set up ctrlp-funky extension:
-nnoremap <Leader>fu :CtrlPFunky<Cr>
+" Add :Find command to search in files with fzf.
+" Do ":Find term" to find term. Up/down to navigate. ? for preview.
+" OR ":Find! term" to find term with preview shown above automatically.
+" --column: Show column number
+" --line-number: Show line number
+" --no-heading: Do not show file headings in results
+" --color: Search color options
+" --follow: Follow symlinks
+" --smart-case: Case insensitive if all lowercase, or case-sensitive otherwise
+" --glob: Additional conditions for search
+command! -bang -nargs=* Find
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --no-heading --color=always --follow --smart-case --glob "!{.git/*,node_modules/*}" '.shellescape(<q-args>), 1,
+  \   <bang>0 ? fzf#vim#with_preview('up:40%')
+  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \   <bang>0)
 
-" narrow list down with a word under cursor:
-nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
-let g:ctrlp_funky_syntax_highlight = 1			" Experimental syntax highlighting.
-
-" Use the nearest .git directory as the cwd:
-let g:ctrlp_working_path_mode = 'r'
-" }}}
 
 " GitGutter {{{
 nmap ]g :GitGutterNextHunk<CR>
@@ -411,7 +420,7 @@ autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in
 
 " }}}
 
-" NERDTree Git {{ {
+" NERDTree Git {{{
 " Show ignored status (might be slow):
 let g:NERDTreeShowIgnoredStatus = 1
 " Set symbols for statuses:
@@ -456,10 +465,6 @@ nnoremap <tab> %
 vnoremap <tab> %
 
 set formatoptions=qrn1
-
-" Search all files in this and below directories.
-" Display results in the little window.
-nnoremap <leader>ff :noautocmd vimgrep //j ** \| cw<c-f>$BBBhhhi
 
 let g:vim_markdown_folding_disabled=1
 

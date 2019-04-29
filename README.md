@@ -28,6 +28,18 @@ Open MacVim and run `:PluginInstall`.
 
 ### Extras
 
+#### fzf
+
+For fuzzy-file searching using `,t`:
+
+	$ brew install fzf
+	$ (brew --prefix)/opt/fzf/install
+
+(Not sure if that second line, installing key bindings and fuzzy completion, is necessary.)
+
+	$ brew install ripgrep
+
+
 #### Font
 
 We use a variant of [Fira Code](https://github.com/tonsky/FiraCode) that
