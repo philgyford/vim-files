@@ -10,11 +10,12 @@ set scrolloff=3                     " Keep cursor away from this many chars top/
 " See https://vimhelp.org/change.txt.html#fo-table
 " Default is tcq
 " c - Auto-wrap comments using textwidth, inserting comment leader.
+" l - Long lines are not broken in insert mode.
 " n - recognize numbered lists.
 " q - Allow formatting of comments with '<leader>gq'
 " r - Automatically insert the current comment leader after hitting <Enter>.
 " 1 - Don't break a line after a one-letter word, but before it (if possible).
-set formatoptions=cnqr1
+set formatoptions=clnqr1
 
 set showmode
 set hidden
@@ -74,7 +75,7 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/nerdtree'
 
 " Show git status flags in NERDTree:
-Plugin 'Xuyuanp/nerdtree-git-plugin'
+"Plugin 'Xuyuanp/nerdtree-git-plugin'
 
 " NOTE: This causes the vim-devicons in NERDTree to get cut in half:
 "   https://github.com/ryanoasis/vim-devicons/issues/133
@@ -91,7 +92,7 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'ap/vim-css-color'
 
 " Add file type icons to NERDTree, lightline, etc:
-Plugin 'ryanoasis/vim-devicons'
+"Plugin 'ryanoasis/vim-devicons'
 
 " Shows git diff in the 'gutter':
 Plugin 'airblade/vim-gitgutter'
@@ -270,6 +271,11 @@ augroup configgroup
     autocmd FileType html setlocal softtabstop=2
     autocmd FileType html setlocal tabstop=2
 
+    autocmd FileType htmldjango setlocal expandtab
+    autocmd FileType htmldjango setlocal shiftwidth=2
+    autocmd FileType htmldjango setlocal softtabstop=2
+    autocmd FileType htmldjango setlocal tabstop=2
+
     autocmd FileType javascript setlocal expandtab
     autocmd FileType javascript setlocal shiftwidth=2
     autocmd FileType javascript setlocal softtabstop=2
@@ -279,6 +285,16 @@ augroup configgroup
     autocmd FileType json setlocal shiftwidth=2
     autocmd FileType json setlocal softtabstop=2
     autocmd FileType json setlocal tabstop=2
+
+    autocmd FileType markdown setlocal expandtab
+    autocmd FileType markdown setlocal shiftwidth=4
+    autocmd FileType markdown setlocal softtabstop=4
+    autocmd FileType markdown setlocal tabstop=4
+
+    autocmd FileType php setlocal noexpandtab
+    autocmd FileType php setlocal shiftwidth=4
+    "autocmd FileType php setlocal softtabstop=4
+    autocmd FileType php setlocal tabstop=4
 
     autocmd FileType python setlocal textwidth=79
     autocmd FileType python setlocal colorcolumn+=72        " Extra column for comments
@@ -303,21 +319,39 @@ augroup END
 
 " ALE {{{
 let g:ale_open_list = 1
-let g:ale_sign_warning = '▲'
-let g:ale_sign_error = '✗'
+
+" Always display the gutter column:
+let g:ale_sign_column_always = 1
+
+" Set gutter icon colors:
 highlight link ALEWarningSign String
 highlight link ALEErrorSign Title
-highlight clear ALEErrorSign
-highlight clear ALEWarningSign
+
+" Set gutter icons:
+let g:ale_sign_warning = ''
+let g:ale_sign_error = ''
+
 nmap <leader>f <Plug>(ale_fix)
 "" Jump to next/previous error:
 nmap <silent> <leader>aj :ALENext<cr>
 nmap <silent> <leader>ak :ALEPrevious<cr>
 
+" Run ALL linters unless specified here:
+let g:ale_linters = {
+\   'python': ['flake8'] ,
+\ }
+
 augroup VimDiff
   autocmd!
   autocmd VimEnter,FilterWritePre * if &diff | ALEDisable | endif
 augroup END
+
+" Close the loclist window automatically when the buffer is closed:
+augroup CloseLoclistWindowGroup
+  autocmd!
+  autocmd QuitPre * if empty(&buftype) | lclose | endif
+augroup END
+
 " }}}
 
 " FZF {{{
@@ -376,47 +410,57 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#eee8d5 ctermbg=0
 " }}}
 
 " Lightline {{{
-let g:lightline = {
-\ 'colorscheme': 'solarized',
-\ 'active': {
-\   'left': [['mode', 'paste'], ['filename', 'readonly', 'modified']],
-\   'right': [ ['percent', 'lineinfo'],
-\              ['fileencoding', 'filetype'],
-\              ['linter_warnings', 'linter_errors', 'linter_ok'] ]
-\ },
-\ 'component_expand': {
+let g:lightline = {}
+
+let g:lightline.colorscheme = 'solarized'
+
+" Register components:
+let g:lightline.component_expand = {
 \   'linter_warnings': 'LightlineLinterWarnings',
 \   'linter_errors': 'LightlineLinterErrors',
-\   'linter_ok': 'LightlineLinterOK'
-\ },
-\ 'component_type': {
-\   'readonly': 'error',
-\   'linter_warnings': 'warning',
-\   'linter_errors': 'error'
-\ },
+\   'linter_ok': 'LightlineLinterOK',
 \ }
 
-" From https://github.com/statico/dotfiles/blob/master/.vim/vimrc
+" Set component colors:
+let g:lightline.component_type = {
+\   'readonly': 'error',
+\   'linter_warnings': 'warning',
+\   'linter_errors': 'error',
+\ }
+
+let g:lightline.active = {
+\   'left':  [
+\               ['mode', 'paste'],
+\               ['filename', 'readonly', 'modified']
+\            ],
+\   'right': [
+\               ['percent', 'lineinfo'],
+\               ['fileencoding', 'filetype'],
+\               ['linter_warnings', 'linter_errors', 'linter_ok']
+\            ]
+\ }
+
+"" From https://github.com/statico/dotfiles/blob/master/.vim/vimrc
 
 function! LightlineLinterWarnings() abort
   let l:counts = ale#statusline#Count(bufnr(''))
   let l:all_errors = l:counts.error + l:counts.style_error
   let l:all_non_errors = l:counts.total - l:all_errors
-  return l:counts.total == 0 ? '' : printf('%d ◆', all_non_errors)
+  return l:counts.total == 0 ? '' : printf('%d ', all_non_errors)
 endfunction
 
 function! LightlineLinterErrors() abort
   let l:counts = ale#statusline#Count(bufnr(''))
   let l:all_errors = l:counts.error + l:counts.style_error
   let l:all_non_errors = l:counts.total - l:all_errors
-  return l:counts.total == 0 ? '' : printf('%d ✗', all_errors)
+  return l:counts.total == 0 ? '' : printf('%d ', all_errors)
 endfunction
 
 function! LightlineLinterOK() abort
   let l:counts = ale#statusline#Count(bufnr(''))
   let l:all_errors = l:counts.error + l:counts.style_error
   let l:all_non_errors = l:counts.total - l:all_errors
-  return l:counts.total == 0 ? '✓ ' : ''
+  return l:counts.total == 0 ? ' ' : ''
 endfunction
 
 " Update and show lightline but only if it's visible (e.g., not in Goyo)
