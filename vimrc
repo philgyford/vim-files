@@ -100,6 +100,9 @@ Plugin 'airblade/vim-gitgutter'
 " Display indent levels visually:
 Plugin 'nathanaelkane/vim-indent-guides'
 
+" Use local `vimrc` files:
+Plugin 'embear/vim-localvimrc'
+
 " Markdown syntax highlighting etc:
 Plugin 'plasticboy/vim-markdown'
 
