@@ -67,6 +67,13 @@ With [Localvimrc](https://github.com/embear/vim-localvimrc) installed we can
 add `.lvimrc` files in project directories and commands in them will be used.
 (You'll probably have to confirm once or twice, for security reasons.)
 
+You can't/shouldn't use `autcmd` in these files but, if you need to set things
+based on filetype you can put something like this in there:
+
+    if &filetype == "text"
+      setlocal textwidth=30 colorcolumn=30
+    endif
+
 
 ## Using Vundle
 
