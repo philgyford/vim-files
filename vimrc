@@ -263,57 +263,32 @@ augroup configgroup
     "autocmd BufWritePre *.php,*.py,*.js,*.txt,*.hs,*.java,*.md
                 "\:call <SID>StripTrailingWhitespaces()
 
-    autocmd FileType gitcommit setlocal textwidth=72
-    autocmd FileType gitcommit setlocal colorcolumn+=51     " Extra column for titles:
+    " cc  - colorcolumn (comma-separated list of cols in which to display line)
+    " et  - expandtab (or noet for opposite)
+    " sw  - shiftwidth
+    " sts - softtabstop
+    " ts  - tabstop
+    " tw  - textwidth (wrapping)
 
-    autocmd FileType html setlocal expandtab
-    autocmd FileType html setlocal shiftwidth=2
-    autocmd FileType html setlocal softtabstop=2
-    autocmd FileType html setlocal tabstop=2
+    autocmd FileType css        setlocal sw=2 sts=2 ts=2 et
+    autocmd FileType html       setlocal sw=2 sts=2 ts=2 et
+    autocmd FileType htmldjango setlocal sw=2 sts=2 ts=2 et
+    autocmd FileType javascript setlocal sw=2 sts=2 ts=2 et
+    autocmd FileType json       setlocal sw=2 sts=2 ts=2 et
+    autocmd FileType ruby       setlocal sw=2 sts=2 ts=2 et
+    autocmd FileType scss       setlocal sw=2 sts=2 ts=2 et
+    autocmd FileType yaml       setlocal sw=2 sts=2 ts=2 et
 
-    autocmd FileType htmldjango setlocal expandtab
-    autocmd FileType htmldjango setlocal shiftwidth=2
-    autocmd FileType htmldjango setlocal softtabstop=2
-    autocmd FileType htmldjango setlocal tabstop=2
+    autocmd FileType gitcommit  setlocal tw=72 cc+=51
 
-    autocmd FileType javascript setlocal expandtab
-    autocmd FileType javascript setlocal shiftwidth=2
-    autocmd FileType javascript setlocal softtabstop=2
-    autocmd FileType javascript setlocal tabstop=2
+    autocmd FileType markdown   setlocal sw=4 sts=4 ts=4 et
 
-    autocmd FileType json setlocal expandtab
-    autocmd FileType json setlocal shiftwidth=2
-    autocmd FileType json setlocal softtabstop=2
-    autocmd FileType json setlocal tabstop=2
+    autocmd FileType php        setlocal sw=4 ts=4 noet
 
-    autocmd FileType markdown setlocal expandtab
-    autocmd FileType markdown setlocal shiftwidth=4
-    autocmd FileType markdown setlocal softtabstop=4
-    autocmd FileType markdown setlocal tabstop=4
+    autocmd FileType python     setlocal sw=4 sts=4 ts=4 et tw=79 cc+=72
+    " Formatting with Black plugin:
+    autocmd FileType python     nnoremap <buffer> <leader>fo :Black<CR>
 
-    autocmd FileType php setlocal noexpandtab
-    autocmd FileType php setlocal shiftwidth=4
-    "autocmd FileType php setlocal softtabstop=4
-    autocmd FileType php setlocal tabstop=4
-
-    autocmd FileType python setlocal textwidth=79
-    autocmd FileType python setlocal colorcolumn+=72        " Extra column for comments
-    autocmd FileType python setlocal expandtab
-    autocmd FileType python setlocal shiftwidth=4
-    autocmd FileType python setlocal softtabstop=4
-    autocmd FileType python setlocal tabstop=4
-" Formatting with Black plugin:
-    autocmd FileType python nnoremap <buffer> <leader>fo :Black<CR>
-
-    autocmd FileType ruby setlocal expandtab
-    autocmd FileType ruby setlocal shiftwidth=2
-    autocmd FileType ruby setlocal softtabstop=2
-    autocmd FileType ruby setlocal tabstop=2
-
-    autocmd FileType yaml setlocal expandtab
-    autocmd FileType yaml setlocal shiftwidth=2
-    autocmd FileType yaml setlocal softtabstop=2
-    autocmd FileType yaml setlocal tabstop=2
 augroup END
 " }}}
 
