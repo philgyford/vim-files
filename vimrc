@@ -131,7 +131,7 @@ else
 endif
  
 " Make trailing spaces very visible
-highlight ExtraWhiteSpace ctermbg=Black guibg=#eee8d5
+highlight ExtraWhiteSpace ctermbg=Black guibg=#cb4b16
 match ExtraWhitespace /\s\+$/
 " }}}
 
