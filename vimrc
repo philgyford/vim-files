@@ -298,6 +298,9 @@ augroup END
 " ALE {{{
 let g:ale_open_list = 1
 
+" Milliseconds delay before linting happens (default: 200):
+let g:ale_lint_delay = 2000
+
 " Always display the gutter column:
 let g:ale_sign_column_always = 1
 
