@@ -1,6 +1,6 @@
 " General {{{
 set nocompatible                    " Stop being vi compatible.
-filetype off
+"filetype off
 set backspace=indent,eol,start      " Allow backspace beyond insertion point
 set encoding=utf-8
 set fileencoding=utf-8
@@ -10,13 +10,15 @@ set scrolloff=3                     " Keep cursor away from this many chars top/
 " See https://vimhelp.org/change.txt.html#fo-table
 " Default is tcq
 " c - Auto-wrap comments using textwidth, inserting comment leader.
+" j - Delete comment characters when joining lines.
 " l - Long lines are not broken in insert mode.
 " n - recognize numbered lists.
 " q - Allow formatting of comments with '<leader>gq'
 " r - Automatically insert the current comment leader after hitting <Enter>.
 " 1 - Don't break a line after a one-letter word, but before it (if possible).
-set formatoptions=clnqr1
+set formatoptions=cjlnqr1
 
+set confirm                         " Display confirmation dialog when closing an unsaved file.
 set showmode
 set hidden
 set visualbell
@@ -170,10 +172,10 @@ set showmatch                               " Highlight matching parenthesis
 " }}}
 
 " Searching {{{
-set ignorecase                              " Ignore case when searching, but...
-set smartcase                               " ...if pattern contains an uppercase char, it is case sensitive
-set incsearch                               " Search as characters are entered
-set hlsearch                                " Highlight all matches
+set ignorecase                      " Ignore case when searching, but...
+set smartcase                       " ...if pattern contains an uppercase char, it is case sensitive
+set incsearch                       " Search as characters are entered
+set hlsearch                        " Highlight all matches
 nnoremap / /\v
 vnoremap / /\v
 " }}}
