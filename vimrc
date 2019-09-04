@@ -290,7 +290,7 @@ augroup configgroup
 
     autocmd FileType php        setlocal sw=4 ts=4 noet
 
-    autocmd FileType python     setlocal sw=4 sts=4 ts=4 et tw=79 cc+=72
+    autocmd FileType python     setlocal sw=4 sts=4 ts=4 et tw=88 cc+=72
     " Formatting with Black plugin:
     autocmd FileType python     nnoremap <buffer> <leader>fo :Black<CR>
 
@@ -337,7 +337,7 @@ augroup END
 
 " }}}
 
-" FZF {{{
+" FZF & RG {{{
 nnoremap <leader>t :Files<CR>
 nnoremap <leader>b :Buffers<CR>
 "nnoremap <leader>r :Tags<CR>
@@ -354,19 +354,20 @@ let $FZF_DEFAULT_COMMAND = 'rg --files --follow --glob "!{.git,node_modules}/*" 
 " Do ":Find term" to find term. Up/down to navigate. ? for preview.
 " OR ":Find! term" to find term with preview shown above automatically.
 " --column: Show column number
+" --color: Search color options
+" --fixed-strings: Search for a literal string, not a regular expression
+" --follow: Follow symlinks
+" --glob: Additional conditions for search
 " --line-number: Show line number
 " --no-heading: Do not show file headings in results
-" --color: Search color options
-" --follow: Follow symlinks
 " --smart-case: Case insensitive if all lowercase, or case-sensitive otherwise
-" --glob: Additional conditions for search
 command! -bang -nargs=* Find
   \ call fzf#vim#grep(
-  \   'rg --column --line-number --no-heading --color=always --follow --smart-case --glob "!{.git/*,node_modules/*}" '.shellescape(<q-args>), 1,
-  \   <bang>0 ? fzf#vim#with_preview('up:40%')
-  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \   'rg --column --line-number --hidden --ignore-case --no-heading --color=always '.shellescape(<q-args>), 1,
+  \   <bang>0 ? fzf#vim#with_preview({'options': '--delimiter : --nth 4.. --exact'}, 'up:40%')
+  \           : fzf#vim#with_preview({'options': '--delimiter : --nth 4.. --exact'}, 'right:50%:hidden', '?'),
   \   <bang>0)
-"}}}
+" }}}
 
 " GitGutter {{{
 nmap ]g :GitGutterNextHunk<CR>
@@ -464,6 +465,12 @@ augroup _lightline
   autocmd User ALELint call s:MaybeUpdateLightline()
   autocmd ColorScheme * call s:UpdateLightlineColorScheme()
 augroup END
+
+" }}}
+
+" NERDCommenter {{{
+" Align line-wise comment delimiters flush left instead of following code indentation
+let g:NERDDefaultAlign = 'left'
 
 " }}}
 
