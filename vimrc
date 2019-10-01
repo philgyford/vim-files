@@ -240,18 +240,18 @@ nnoremap <C-l> <C-w>l
 
 " Default window size (same as an option in 'change window size', below):
 if has('gui_running')
-    set lines=96 columns=118
+    set lines=96 columns=121
 endif
 
 " Change window size:
 " (one of these should be the same as in 'default window size', above)
 
-" Wide enough for nerdtree and 1 document::
-nmap <leader>1 :set lines=96 columns=118<CR>
+" Wide enough for nerdtree and 1 (python) document::
+nmap <leader>1 :set lines=96 columns=121<CR>
 " Wide enough for nerdtree and 2 documents:
-nmap <leader>2 :set lines=96 columns=205<CR>
+nmap <leader>2 :set lines=96 columns=217<CR>
 " Wide enough for nerdtree and 3 documents:
-nmap <leader>3 :set lines=96 columns=292<CR>
+nmap <leader>3 :set lines=96 columns=316<CR>
 
 " Single document, no nerdtree:
 nmap <leader>9 :set lines=96 columns=86<CR>
@@ -301,7 +301,7 @@ augroup END
 let g:ale_open_list = 1
 
 " Milliseconds delay before linting happens (default: 200):
-let g:ale_lint_delay = 2000
+let g:ale_lint_delay = 5000
 
 " Always display the gutter column:
 let g:ale_sign_column_always = 1
@@ -479,6 +479,7 @@ let g:NERDTreeMinimalUI = 1             " Disables the Bookmarks label
 let g:NERDTreeMarkBookmarks = 0         " Don't mark Bookmarks
 let g:NERDTreeAutoDeleteBuffer = 1      " Delete buffer when deleting/renaming a file in a context menu
 let g:NERDTreeStatusLine = -1           " Use default statusline setting
+let g:NERDTreeWinSize=25                " Width
 
 " Open/close NERDTree:
 map <leader>d :execute 'NERDTreeToggle ' . getcwd()<CR>
