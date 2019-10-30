@@ -48,17 +48,27 @@ includes icons which are used by `vim-devicons`. Install it with:
 	$ cd ~/Library/Fonts && curl -fLo "Fura Code Retina Nerd Font Complete.otf" https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/FiraCode/Retina/complete/Fura%20Code%20Retina%20Nerd%20Font%20Complete.otf
 
 (Previously we used the plain Fira Code, installed with Homebrew:
-install with [Homebrew](http://brew.sh/): 
+install with [Homebrew](http://brew.sh/):
 
 	$ brew tap caskroom/fonts
 	$ brew cask install font-fira-code
 )
 
-#### Linting and formatting
+#### Formatting and linting
 
-* Install Black for python formatting: `pip install black`
+`,fo` will run Neoformat on the current file.
 
-* Install flake8 for python linting with ALE: `pip install flake8`
+* Install [Black](https://black.readthedocs.io/en/stable/) for python formatting with Neoformat:
+
+        $ pip install black
+
+* Install [Prettier](https://prettier.io) for JavaScript formatting with Neoformat:
+
+        $ npm install --global prettier
+
+* Install flake8 for python linting with ALE
+
+        $ pip install flake8
 
 
 #### Local project files
@@ -83,7 +93,7 @@ Add a new line in `vimrc` like:
 
 	Plugin 'tpope/vim-surround'
 
-Reload it (`:source $MYVIMRC`) and run `:PluginInstall`.
+Reload it (`:source $MYVIMRC` or `,sv`) and run `:PluginInstall`.
 
 ### Update all configured plugins
 
@@ -92,7 +102,7 @@ Reload it (`:source $MYVIMRC`) and run `:PluginInstall`.
 
 ## Removing a plugin
 
-Delete the line from `vimrc` and run `:PluginClean`.
+Delete the line from `vimrc`, source it (`,sv`) and run `:PluginClean`.
 
 
 ## More help

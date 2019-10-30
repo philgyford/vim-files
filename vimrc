@@ -55,9 +55,6 @@ call vundle#begin()
 " ALE, Asynchronous Lint Engine
 Plugin 'w0rp/ale'
 
-" Python formatting:
-"Plugin 'psf/black'
-
 " Auto closing of quotes, brackets, etc:
 Plugin 'Raimondi/delimitMate'
 
@@ -70,6 +67,9 @@ Plugin 'junegunn/fzf.vim'
 
 " Status bar:
 Plugin 'itchyny/lightline.vim'
+
+" Code formatting:
+Plugin 'sbdchd/neoformat'
 
 " Make code commenting better:
 Plugin 'scrooloose/nerdcommenter'
@@ -226,9 +226,9 @@ nnoremap <leader>ev :vsp $MYVIMRC<CR>
 " Source .vimrc:
 nnoremap <leader>sv :source $MYVIMRC<CR>
 
-" Format the entire file (e.g. with Black for python files) and maintain
-" cursor position
-nnoremap <leader>fo Ggqgg<C-o><C-o>
+" Code formatting:
+nnoremap <leader>fo :Neoformat<CR>
+
 " }}}
 
 " Window & Splits {{{
@@ -296,10 +296,6 @@ augroup configgroup
     autocmd FileType php        setlocal sw=4 ts=4 noet
 
     autocmd FileType python     setlocal sw=4 sts=4 ts=4 et tw=88 cc+=72
-    " Formatting with Black plugin:
-    "autocmd FileType python     nnoremap <buffer> <leader>fo :Black<CR>
-    autocmd FileType python     setlocal formatprg=black\ --quiet\ -\ 2>\ /dev/null
-
 augroup END
 " }}}
 
@@ -471,6 +467,13 @@ augroup _lightline
   autocmd User ALELint call s:MaybeUpdateLightline()
   autocmd ColorScheme * call s:UpdateLightlineColorScheme()
 augroup END
+
+" }}}
+
+" Neoformat {{{
+
+let g:neoformat_enabled_javascript = ['prettier']
+let g:neoformat_enabled_python = ['black']
 
 " }}}
 
