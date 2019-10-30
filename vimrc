@@ -1,4 +1,5 @@
 " General {{{
+
 set nocompatible                    " Stop being vi compatible.
 "filetype off
 set backspace=indent,eol,start      " Allow backspace beyond insertion point
@@ -55,7 +56,7 @@ call vundle#begin()
 Plugin 'w0rp/ale'
 
 " Python formatting:
-Plugin 'ambv/black'
+"Plugin 'psf/black'
 
 " Auto closing of quotes, brackets, etc:
 Plugin 'Raimondi/delimitMate'
@@ -224,6 +225,10 @@ nnoremap <leader>ev :vsp $MYVIMRC<CR>
 "nnoremap <leader>ez :vsp ~/.zshrc<CR>
 " Source .vimrc:
 nnoremap <leader>sv :source $MYVIMRC<CR>
+
+" Format the entire file (e.g. with Black for python files) and maintain
+" cursor position
+nnoremap <leader>fo Ggqgg<C-o><C-o>
 " }}}
 
 " Window & Splits {{{
@@ -292,7 +297,8 @@ augroup configgroup
 
     autocmd FileType python     setlocal sw=4 sts=4 ts=4 et tw=88 cc+=72
     " Formatting with Black plugin:
-    autocmd FileType python     nnoremap <buffer> <leader>fo :Black<CR>
+    "autocmd FileType python     nnoremap <buffer> <leader>fo :Black<CR>
+    autocmd FileType python     setlocal formatprg=black\ --quiet\ -\ 2>\ /dev/null
 
 augroup END
 " }}}
