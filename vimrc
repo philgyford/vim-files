@@ -55,6 +55,9 @@ call vundle#begin()
 " ALE, Asynchronous Lint Engine
 Plugin 'w0rp/ale'
 
+
+Bundle 'captbaritone/better-indent-support-for-php-with-html'
+
 " Auto closing of quotes, brackets, etc:
 Plugin 'Raimondi/delimitMate'
 
@@ -132,10 +135,7 @@ if has('gui_running')
 else
     set background=dark
 endif
- 
-" Make trailing spaces very visible
-highlight ExtraWhiteSpace ctermbg=Black guibg=#cb4b16
-match ExtraWhitespace /\s\+$/
+
 " }}}
 
 " Spaces & Tabs {{{
@@ -293,7 +293,7 @@ augroup configgroup
 
     autocmd FileType markdown   setlocal sw=4 sts=4 ts=4 et
 
-    autocmd FileType php        setlocal sw=4 ts=4 noet
+    autocmd FileType php        setlocal sw=4 sts=4 ts=4 et
 
     autocmd FileType python     setlocal sw=4 sts=4 ts=4 et tw=88 cc+=72
 augroup END
@@ -551,6 +551,9 @@ let g:vim_markdown_folding_disabled=1
 
 let python_highlight_all = 1
 
+" Make trailing spaces very visible
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
 
 " Some of this inspired by:
 "    http://stevelosh.com/blog/2010/09/coming-home-to-vim/
